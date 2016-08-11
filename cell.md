@@ -13,7 +13,7 @@
 
   那么第一种方式就是通过content-box + border-direction 来实现：
 
-、、、css
+、、、
 	  .b-r {
 	  	border-right: 1px solid rgb(232,232,232);
 	  }
@@ -28,5 +28,5 @@
 	    border-left: 1px  solid rgb(232,232,232);
 	    float: left;
 	  }
-、、、	  
+、、、  
 
