@@ -33,7 +33,7 @@
 
   那么第二种方式就是 border-box + margin 来实现:
 
-```
+```css
 		ul > li {
 			list-style: none;
 			padding: 0;
@@ -55,7 +55,7 @@
   高高兴兴的加了个hover,哎呀，怎么border的颜色显示的不全？别忘了，我们之前做了margin操作，部分的border被遮盖了。
   这下我们得用到 z-index 这个属性：
 
-```
+```css
 		ul > li:hover {
 			position: relative;
 			border: 2px solid rgb(213,213,213);
@@ -65,7 +65,7 @@
   
   乍一看，效果棒棒的，然后要在格子里添加内容了。我了个去，怎么点击格子时，抽搐了一样。仔细想想，我们在点击的时候改变了border的宽度，页面布局发生了变化，这也就是抽搐的原因。所以解决方案就是没有hover之前，设置li的div的border为1px透明，当hover的时候在添加颜色，这样1+1就是2个px了。哈哈。。。(别忘了 div的盒子模型！)
 
-  ```
+```css
   		ul > li:hover {
 			position: relative;
 			border: 1px solid rgb(213,213,213);
@@ -83,7 +83,7 @@
 			-webkit-box-sizing: border-box;
 			padding: 10px;
 		}
-  ```
+```
   前端小白，不喜勿喷，欢迎批评指正。
   
 	
