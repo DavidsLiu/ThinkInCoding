@@ -22,7 +22,7 @@
 	}
 ```  
 
-  对于event.currentTarget是注册事件的对象。
+  对于event.currentTarget是注册事件的对象。只有
 
   阻止浏览器的默认行为:
 
@@ -85,8 +85,11 @@
 
 ####实现一个事件模型
   1、创建一个对象来保存注册的事件。
+
   2、对一个事件名称绑定多个响应事件。
+
   3、触发事件。
+
   4、取消事件。
 
 ```js
@@ -118,6 +121,51 @@
 		}
 	}
 ```
+
+####实现事件代理
+  事件代理的优点主要是减少事件的注册、新增子对象的时候无需再对其绑定事件、减少对DOM的操作（千万不要过度使用）
+
+```js
+	function delegateEvent(element, selector, eventType, callback){
+		if(element.addEventListener){
+			//W3C标准下
+			element.addEventListener(eventType, fn, false);
+		}
+		else {
+			//IE标准下
+			element.attachEvent('on' + eventType, fn);
+		}
+		function fn(e){
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+			if(matchSelector(target, selector)){
+				if(callback){
+					//js中代理模式 只是call apply的傀儡。。。。
+					callback.call(target,target);
+				}
+			}
+		}
+		function matchSelector(target, selector){
+			//id选择器
+			if(selector.charAt(0) === "#"){
+				return target.id === selector.slice(1);
+			}
+			//类名选择器
+			else if(selector.charAt(0) === "."){
+				return target.className.indexOf(selector.slice(1)) !== -1;
+			}
+			//普通的选择器
+			return target.tagName.toLowerCase() === selector.toLowerCase();
+		}
+	}
+	var ullist = document.querySelector('#some');
+	delegateEvent(ullist, 'li', 'click', function(e){
+		//e 是当前的目标的对象
+	});
+```
+
+
+
 
 
 
