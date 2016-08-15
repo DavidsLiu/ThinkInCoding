@@ -83,5 +83,41 @@
 
   此方法只能在冒泡阶段。
 
+####实现一个事件模型
+  1、创建一个对象来保存注册的事件。
+  2、对一个事件名称绑定多个响应事件。
+  3、触发事件。
+  4、取消事件。
+
+```js
+	var EventModel = function(){
+		this._listeners = {};
+	}
+	//注册事件
+	EventModel.prototype.on = function(eventName, callback){
+		var listenersCallback = this._listeners[eventName] || [];
+		listenersCallback.push(callback);
+		this._listeners[eventName] = listenersCallback;
+	}
+	//触发事件
+	EventModel.prototype.trigger = function(eventName){
+		var listenersCallback = this._listeners[eventName];
+		var self = this;
+		if(!Array.isArray(listenersCallback)){
+			return;
+		}
+		listenersCallback.forEach(function(callback){
+			callback.call(this);
+		});
+	}
+	//取消事件
+	EventModel.prototype.cancel = function(eventName){
+		var listenersCallback = this._listeners[eventName];
+		if(listenersCallback){
+			this._listeners[eventName] = [];
+		}
+	}
+```
+
 
 
