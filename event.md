@@ -9,6 +9,9 @@
 	event.removeEventListener(type,listener,[useCapture]);
 ```
 
-  type: 是事件的类型（再也不用加on了。。）＜/br＞
-  listener: 是事件触发执行的方法,这里要特别注意listener不要直接写function(){};涉及到调用removeEventListener()方法。＜/br＞
-  useCapture: false表示冒泡阶段，true表示捕捉阶段。＜/br＞
+  type: 是事件的类型（再也不用加on了。。）
+
+  listener: 是事件触发执行的方法,这里要特别注意listener不要直接写function(){};涉及到调用removeEventListener()方法。
+
+  useCapture: false表示冒泡阶段，true表示捕捉阶段。
+  
