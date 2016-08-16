@@ -164,6 +164,41 @@
 	});
 ```
 
+####事件的派发
+  IE支持fireEvent方法触发事件、W3C标准是采用dispatch来实现事件的触发。
+
+```js
+	var fireEvent = function fireEvent(element, event) {
+		if(document.createEventObject){
+			//IE浏览器下
+			var _event = document.createEventObject();
+			return element.fireEvent('on'+event, _event);
+		}
+		else {
+			//W3C标准下
+			var _event = document.createEvent('Event');
+			_event.initEvent(event, true, true);
+			return element.dispatchEvent(_event);
+		}
+	}
+```
+  在W3C标准下，我们可以用很多新的方法，比如创建一个事件：
+
+```js
+	var _event = new Event('message',{'bubbles':true, 'cancelable':true});
+```
+
+  同样创建的事件可以传递参数：
+
+```js
+	var _event = new CustomEvent('message',{
+		'detail': {
+		'name': 'daiqingyun',
+			'age': 21
+		}
+	})
+```
+
 
 
 
