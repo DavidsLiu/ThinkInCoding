@@ -186,8 +186,6 @@
 		xiaoyun.sayHi();//hi i am daiqingyun
 ```
 
-####
-
 
 
 
