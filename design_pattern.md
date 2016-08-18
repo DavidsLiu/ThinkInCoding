@@ -99,7 +99,95 @@
   通过原型的方法达到方法的共享。
 
 
-####The Module Pattern(模块模式)
+####The Observer Pattern(观察者模式)
+
+```
+		var EventModel  = function(){
+			this._listeners = {};
+		}
+		EventModel.prototype.on = function(eventName, callback){
+			var listeners = this._listeners[eventName] || [];
+			listeners.push(callback);
+			this._listeners[eventName] = listeners;
+		}
+		EventModel.prototype.trigger = function(eventName){
+			var args = Array.prototype.slice.call(arguments,1);
+			var listeners = this._listeners[eventName];
+			var _this = this;
+			if(Array.isArray(listeners)){
+				listeners.forEach(function(callback){
+					callback.apply(this,args);
+				});
+			}
+		}
+		var event = new EventModel();
+		event.on('play',function(options){
+			console.log('现在播放的节目是: ' + options.name);
+		});
+		event.trigger('play',{name: '中国新歌声'});
+```
+
+####The Factory Pattern(工厂模式)
+
+```js
+		function People(options){
+			this.name = options.name || '无名';
+			this.age = options.age || 0;
+		}
+
+		People.prototype.sayHi = function(){
+			console.log('hi i am ' + this.name);
+		}
+
+		function Man(options){
+			People.call(this,options); //继承他的属性
+			this.sex = '男';
+		}
+
+		//原型继承
+		Man.prototype = Object.create(People.prototype);
+		Man.prototype.constructor = Man;
+
+		function Woman(options){
+			People.call(this.options);
+			this.sex = "女";
+		}
+
+		Woman.prototype = Object.create(People.prototype);
+		Woman.prototype.constructor = Woman;
+
+		function PeopleFactory(){}
+
+		PeopleFactory.prototype.createPeople = function(options){
+			switch(options.type){
+				case 'man':
+					this.people = Man;
+					break;
+				case 'women':
+					this.people = Women;
+					break;
+				default:
+					this.people = Man;		
+			}
+
+			return new this.people(options);
+		};
+
+
+		var peopleFactory = new PeopleFactory();
+
+		var xiaoyun = peopleFactory.createPeople({
+			type: 'man',
+			name: 'daiqingyun',
+			age: '23'
+		});
+
+		console.log(xiaoyun instanceof Man); //true
+		xiaoyun.sayHi();//hi i am daiqingyun
+```
+
+####
+
 
 
 
