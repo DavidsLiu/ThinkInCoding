@@ -19,4 +19,25 @@
 	</figure>
 ```
 
+#####letter-spacing(字符间距) 和 word-spacing(单词间距)
+
+```CSS
+	/*  letter-spacing解决inline-block的间距 */
+	.father {
+		letter-spacing: -10px;/* 稍微大一点 兼容各个浏览器 */
+	}
+	.father a {
+		letter-spacing: 0;
+	}
+
+
+	/*  word-spacing解决inline-block的间距 */	
+	.father {
+		word-spacing: -10px;/* 稍微大一点 兼容各个浏览器 */
+	}
+	.father a {
+		word-spacing: 0;
+	}
+
+```
 
