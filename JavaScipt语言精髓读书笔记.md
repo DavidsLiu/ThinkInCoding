@@ -39,3 +39,25 @@
     3. ？？如何实现链式编程
     4. ？？如何套用(curry)
     5. 继承
+
+#####数组
+    1. 数组的length是数组的最大整数属性名加上1,并一定是数组的个数。
+    2. Array.concat(item...)  返回一个副本
+    3. Array.join(separator)  返回一个字符串
+    4. Array.pop() 返回被删除的尾部元素
+    5. Array.push(item...) 向数组尾部添加元素,返回数组新的长度
+    6. Array.reverse() 数组翻转
+    7. Array.shift() 删除数组的第一个元素,并返回它。
+    8. Array.slice(start, end)  end可以没有。
+    9. Array.splice(start, deleteCount, item...) 删除 并且替换
+    10. Array.unshift(item...) 在数组前面添加元素
+    11. number.toFixed(控制小数点后几位) 返回字符串。
+
+#####全局变量
+    1. 最糟糕的地方声明一个全局变量，可以通过全局对象window的属性访问它。
+
+#####es6之前没有块级作用域
+
+#####强烈建议使用=== 和 !==
+
+#####避免使用with、eval、void
