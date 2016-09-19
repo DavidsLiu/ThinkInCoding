@@ -78,4 +78,18 @@
 
 ```
 
-#####12、
+#####12、了解margin-collapse
+    其实在table中有border-collapse, 那么margin-collapse是什么呢？(主要是上下坍陷)
+    1、 发生在上下两个div的margin-top 和  margin-bottom 只会显示最大的一个值。没有解决方案，只能统一设置margin-bottom;
+    2、 发生在父子之间的 上下坍陷 可以通过设置 border padding 解决。
+
+
+#####13、box-sizing : border-box 与 content-box
+    尽量采用border-box，方便布局。
+    与border-box相比,content-box的border, padding 多是向往延伸的。
+
+#####14、图片可以采用background-position background-size设置，唯一的缺点无法懒加载。
+
+#####15、使用Kebab-case命名class (.ui-mt-10)
+
+#####16、
