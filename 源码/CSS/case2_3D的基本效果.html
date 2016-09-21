@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>3D属性的基本效果</title>
+	
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+
+		}
+		.big {
+			margin: 100px auto;
+		}
+		.range {
+			width: 400px;
+			display: inline-block;
+		}
+		.range > div {
+			margin-top: 10px;
+		}
+		.con {
+			position: relative;
+			display: inline-block;
+			width: 500px;
+			height: 400px;
+
+			perspective: 1000;
+			-webkit-perspective: 1000;
+			perspective-origin: center center;
+			-webkit-perspective-origin: center center;
+			transform-style: preserve-3d;
+			-webkit-transform-style: -webkit-preserve-3d;
+		}
+		.test {
+			position: relative;
+			margin: 0 auto;
+			width: 200px;
+			height: 200px;
+		
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="big">
+		<div class="con">
+			<div class="test"></div>
+		</div>
+
+		<div class="range">
+			<div>
+				沿着x轴翻转： <input id="xRotate" type="range" max="360" min="-360" style="width:400px;">
+			</div>
+			<div>
+				沿着y轴翻转： <input id="yRotate" type="range" max="360" min="-360" style="width:400px;">
+			</div>
+			<div>
+				沿着Z轴翻转： <input id="zRotate" type="range" max="360" min="-360" style="width:400px;">
+			</div>
+			<div>
+				沿着X轴移动： <input id="xTranslate" type="range" max="50" min="-50" style="width:400px;">
+			</div>
+			<div>
+				沿着Y轴移动： <input id="yTranslate" type="range" max="50" min="-50" style="width:400px;">
+			</div>
+			<div>
+				沿着Z轴移动： <input id="zTranslate" type="range" max="50" min="-50" style="width:400px;">
+			</div>
+			<div>
+				沿着X轴缩放： <input id="xScale" type="range" max="100" min="0" style="width:400px;">
+			</div>
+			<div>
+				沿着Y轴缩放： <input id="yScale" type="range" max="100" min="0" style="width:400px;">
+			</div>
+			<div>
+				沿着Z轴缩放： <input id="zScale" type="range" max="100" min="0" style="width:400px;">
+			</div>
+		</div>	
+	</div>
+	<script type="text/javascript">
+		var con = document.querySelector('.range');
+		var targetElement = document.querySelector('.test');
+		var xscale = 1,yscale = 1,zscale = 1,xtranslate = 0,ytranslate=0,ztranslate = 0;
+		con.addEventListener('change',function(e){
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+			var id = target.id;
+			var value = target.value;
+			if(id === "xRotate"){
+				targetElement.style.transform = "rotate3d(1,0,0,"+value+"deg)";
+			}
+			else if(id === "yRotate"){
+				targetElement.style.transform = "rotate3d(0,1,0,"+value+"deg)";
+			}
+			else if(id === "zRotate"){
+				targetElement.style.transform = "rotate3d(0,0,1,"+value+"deg)";
+			}
+			else if(id === "xTranslate"){
+				xtranslate = target.value;
+				targetElement.style.transform = "translate3d("+xtranslate+"px,"+ytranslate+"px,"+ztranslate+"px)";
+			}
+			else if(id === "yTranslate"){
+				ytranslate = target.value;
+				targetElement.style.transform = "translate3d("+xtranslate+"px,"+ytranslate+"px,"+ztranslate+"px)";
+			}
+			else if(id === "zTranslate"){
+				ztranslate = target.value;
+				targetElement.style.transform = "translate3d("+xtranslate+"px,"+ytranslate+"px,"+ztranslate+"px)";
+			}
+			else if(id === "xScale"){
+				xscale = target.value / 100;
+				targetElement.style.transform = "scale3d("+xscale+","+yscale+","+zscale+")";
+			}
+			else if(id === "yScale"){
+				yscale = target.value / 100;
+				targetElement.style.transform = "scale3d("+xscale+","+yscale+","+zscale+")";
+			}
+			else if(id === "zScale"){
+				zscale = target.value / 100;
+				targetElement.style.transform = "scale3d("+xscale+","+yscale+","+zscale+")";
+			}
+
+
+		},false);
+
+	
+
+
+	</script>
+</body>
+</html>

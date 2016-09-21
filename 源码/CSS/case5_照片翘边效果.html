@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>照片翘边效果</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		body {
+			background-color: #fff;
+		}
+		figure {
+			position: relative;
+			width: 300px;
+			margin: 100px auto;
+			background-color: #fff;
+
+			border: 5px solid #fff;
+		}
+
+		figure::before {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 86%;
+			height: 96%;
+			background-color: transparent;
+			left: 7%;
+			bottom: 2%;
+
+			transform: skewX(12deg) rotate3d(0,0,1,6deg);
+			-webkit-transform: skewX(12deg) rotate3d(0,0,1,6deg);
+
+			box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+			-webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+			z-index: -2;
+		}
+		figure::after {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 86%;
+			height: 96%;
+			background-color: transparent;
+			left: 7%;
+			bottom: 2%;
+
+			transform: skewX(-12deg) rotate3d(0,0,1,-6deg);
+			-webkit-transform: skewX(-12deg) rotate3d(0,0,1,-6deg);
+
+			box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+			-webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+			z-index: -1; 
+		}
+
+
+		figure img {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+
+	<figure>
+		<img src="img/xienan5.jpg" width="100%">
+	</figure>
+</body>
+</html>

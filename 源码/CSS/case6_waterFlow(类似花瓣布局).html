@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>瀑布流</title>
+	<style type="text/css">
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		.con {
+			position: relative;
+			margin: 0 auto;
+			width: 1200px;
+			background-color: rgb(240,240,240);
+		}
+		.con figure {
+			display: block;
+			float: left;
+			width: 228px;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			border: 5px solid #fff;
+		}
+
+		.con figure img {
+			display: block;
+			width: 100%;
+		}
+
+		.clearfix {
+			zoom: 1;
+		}
+		.clearfix::after {
+			content: '';
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+
+	</style>
+</head>
+
+<body>
+	
+	<div class="con clearfix">
+		<figure>
+			<img src="img/xienan1.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan2.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan3.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan4.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan5.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan6.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan7.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan8.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan9.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan10.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan11.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan12.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan13.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan14.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan15.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan16.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan17.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan18.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan19.jpg">
+		</figure>
+		<figure>
+			<img src="img/xienan20.jpg">
+		</figure>
+	</div>
+
+	<script type="text/javascript">
+
+
+		/*
+			author: 戴庆云
+			description: 本例没有模拟大量图片加载时的情况，前端小白，不喜勿喷，欢迎指点。
+		*/
+		window.addEventListener('load',function(){
+			waterFlow('.con');
+		},false);
+		
+		//瀑布流
+		function waterFlow(className){
+			var parentNode = document.querySelector(className);
+			var waterItemNodeList = document.querySelectorAll(className + ' figure');
+			var waterItemArray = Array.prototype.slice.call(waterItemNodeList,0);
+			//每一行的个数
+			var colNum = 5;
+			//元素的高度数组
+			var heightArray = [];
+			waterItemArray.forEach(function(value,index){
+				heightArray.push(value.offsetHeight);
+			});
+			//最大的高度
+			var maxHeight = 0;
+			//重绘
+			waterItemArray.forEach(function(value, index){
+				//横坐标
+				var x =  (index % colNum) * (228 + 10) + 10 + 'px';
+				//纵坐标
+				var y = 0;
+				if(index < colNum){
+					y = "10px";
+				}
+				else {
+					var row = Math.floor(index / colNum);
+					for(var i = 1; i < row + 1;i++){
+						y += heightArray[index - colNum * i] + 10
+					}
+
+					y += 10;
+
+					y += 'px';
+					
+				}
+
+				var yValue = parseInt(y) + heightArray[index];
+				maxHeight = maxHeight < yValue ? yValue : maxHeight;
+
+				value.style.position = "absolute";
+				value.style.top = y;
+				value.style.left = x;
+
+			});
+
+			//弥补绝对定位 缺失的高度。
+			parentNode.style.height = maxHeight + 20 + 'px';
+
+		}
+
+
+
+		
+
+	</script>
+
+
+</body>
+</html>

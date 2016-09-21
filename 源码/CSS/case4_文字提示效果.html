@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>文字提示效果</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		.container {
+			position: relative;
+			width: 1200px;
+			margin: 20px auto;
+		}
+
+		.container figure {
+			width: 400px;
+			position: relative;
+			overflow: hidden;
+			float: left;
+
+		}
+
+		.container figure img {
+			display: block;
+			transition: 0.5s all ease-in-out;
+			-webkit-transition: 0.5s all ease-in-out;
+		}
+
+
+		/*  第一种效果 */
+		.effect1 figcaption {
+			position: absolute;
+			top: 10px;
+			left: 20px;
+		}
+		.effect1 figcaption h3 {
+			color: white;
+			line-height: 30px;
+			
+			transition: 0.5s all ease-in-out;
+			-webkit-transition: 0.5s all ease-in-out;
+
+			transform: translate3d(-100px,0,0);
+			-webkit-transform: translate3d(-200px,0,0);
+		}
+
+		.effect1 figcaption p {
+			line-height: 20px;
+			color: #fff;
+			font-size: 14px;
+			transform: translate3d(-200px,0,0);
+			-webkit-transform: translate3d(-200px,0,0);
+			transition: 0.5s all ease-in-out;
+			-webkit-transition: 0.5s all ease-in-out;
+		}
+
+		.effect1 figcaption p:nth-of-type(1) {
+			transition-delay: 0.1s;
+			-webkit-transition-delay: 0.1s;
+		}
+
+		.effect1 figcaption p:nth-of-type(2) {
+			transition-delay: 0.2s;
+			-webkit-transition-delay: 0.2s;
+		}
+
+		.effect1:hover figcaption h3 , .effect1:hover figcaption p {
+			transform: translate3d(0,0,0);
+			-webkit-transform: translate3d(0,0,0);
+		}
+
+		.effect1:hover img {
+			opacity: 0.8;
+			transform: scale3d(1.2,1.2,1);
+			-webkit-transform: scale3d(1.2,1.2,1);
+		}
+
+		/*  第二种效果 */
+		.effect2 figcaption {
+			position: absolute;
+			width: 200px;
+			height: 150px;
+			top: 50%;
+			left: 50%;
+			border: 2px solid rgba(213,213,213,0.6);
+			margin-left: -100px;
+			margin-top: -75px;
+
+
+			transition: .5s all ease-in-out;
+			-webkit-transition: .5s all ease-in-out;
+
+			transform: translate3d(0,-400px,0) rotate3d(0,0,1,0deg);
+			-webkit-transform: translate3d(0,-400px,0) rotate3d(0,0,1,0deg);
+			opacity: 0.9;
+	
+		}
+		.effect2 figcaption h3 {
+			text-align: center;
+			color: #fff;
+			line-height: 50px;
+			margin-top: 25px;
+		}
+
+		.effect2 figcaption p {
+			text-align: center;
+			color: #fff;
+			line-height: 30px;
+		}
+
+		.effect2:hover figcaption {
+			transform: translate3d(0,0,0) rotate3d(0,0,1,360deg);
+			-webkit-transform: translate3d(0,0,0) rotate3d(0,0,1,360deg);
+		}
+
+		.effect2:hover img {
+			opacity: 0.8;
+			transform: scale3d(1.2,1.2,1);
+			-webkit-transform: scale3d(1.2,1.2,1);
+
+		}
+
+
+		/*  第三种种效果 */
+		.effect3 figcaption {
+			position: absolute;
+			width: 200px;
+			height: 150px;
+			top: 50%;
+			left: 50%;
+			border: 2px solid rgba(213,213,213,0.6);
+			margin-left: -100px;
+			margin-top: -75px;
+
+
+			transition: .5s all ease-in-out;
+			-webkit-transition: .5s all ease-in-out;
+
+			transform: scale3d(3,3,1);
+			-webkit-transform: scale3d(3,3,1);
+			opacity: 0;
+	
+		}
+		.effect3 figcaption h3 {
+			text-align: center;
+			color: #fff;
+			line-height: 50px;
+			margin-top: 25px;
+		}
+
+		.effect3 figcaption p {
+			text-align: center;
+			color: #fff;
+			line-height: 30px;
+		}
+
+		.effect3:hover figcaption {
+			transform: scale3d(1,1,1);
+			-webkit-transform: scale3d(1,1,1);
+			opacity: 0.9;
+		}
+
+		.effect3:hover img {
+			opacity: 0.8;
+			transform: scale3d(1.2,1.2,1);
+			-webkit-transform: scale3d(1.2,1.2,1);
+
+		}
+
+		/*  第四种种效果 */
+		.effect4 figcaption {
+			position: absolute;
+			color: #fff;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+		.effect4 figcaption h3 {
+			text-align: center;
+			line-height: 30px;
+			margin-top: 100px;
+
+			transition: 0.5s all ease-in-out;
+			-webkit-transition: 0.5s all ease-in-out;
+
+			transform: skewX(90deg);
+			-webkit-transform: skewX(90deg);
+		}
+		.effect4 figcaption p {
+			text-align: center;
+			line-height: 25px;
+
+			transition: 0.5s all ease-in-out;
+			-webkit-transition: 0.5s all ease-in-out;
+
+			transition-delay: 0.1s;
+
+			transform: skewX(90deg);
+			-webkit-transform: skewX(90deg);
+		}
+
+		.effect4:hover h3 , .effect4:hover p {
+			transform: skewX(0deg);
+			-webkit-transform: skewX(0deg);
+		}
+
+		.effect4:hover img {
+			opacity: 0.8;
+			transform: scale3d(1.2,1.2,1);
+			-webkit-transform: scale3d(1.2,1.2,1);
+		}
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<figure class="effect1">
+			<img src="img/xienan1.jpg" width="100%">
+			<figcaption>
+				<h3>谢楠</h3>
+				<p>光线传媒当家主持</p>
+				<p>网剧杜拉拉升职记</p>
+			</figcaption>
+		</figure>
+		<figure class="effect2">
+			<img src="img/xienan1.jpg" width="100%">
+			<figcaption>
+				<h3>谢楠</h3>
+				<p>光线传媒当家主持</p>
+			</figcaption>
+		</figure>
+		<figure class="effect3">
+			<img src="img/xienan1.jpg" width="100%">
+			<figcaption>
+				<h3>谢楠</h3>
+				<p>光线传媒当家主持</p>
+			</figcaption>
+		</figure>
+		<figure class="effect4">
+			<img src="img/xienan1.jpg" width="100%">
+			<figcaption>
+				<h3>谢楠</h3>
+				<p>光线传媒当家主持</p>
+			</figcaption>
+		</figure>
+	</div>
+</body>
+</html>

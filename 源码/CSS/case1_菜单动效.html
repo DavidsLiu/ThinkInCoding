@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>动效菜单</title>
+	<style type="text/css">
+
+		html {
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			padding: 0;
+			margin: 0;
+			height: 100%;
+			width: 100%;
+			background-color: #47c9af;
+			color:#74777b;
+			font-weight: 300;
+			font-size: 1.5em;
+		}
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.headerNav ul {
+			list-style: none;
+		}
+		.headerNav ul li {
+			display: inline-block;
+			width: 200px;
+		}
+
+		a:link,a:visited,a:focus {
+			text-decoration: none;
+			outline: none;
+		
+		}
+		.headerNav .tooltip {
+			position: relative;
+			display: inline-block;
+			color: rgba(0,0,0,0.4);
+			transition: color 0.3s;
+			-webkit-transition: color 0.3s;
+			-ms-transition: color 0.3s;
+			-moz-transition: color 0.3s;
+		}
+
+		.headerNav .tooltip:hover {
+			color: rgb(255,255,255);
+
+		}
+
+		.headerNav .tooltip:hover .tooltip-content {
+			opacity: 1;
+
+			transform: translateY(10px);
+			-webkit-transform: translateY(10px);
+			-ms-transform: translateY(10px);
+			-moz-transform: translateY(10px);
+			transform-origin: center bottom;
+			-webkit-transform-origin: center bottom;
+			-ms-transform-origin: center bottom;
+			-moz-transform-origin: center bottom;
+		}
+
+		.headerNav .tooltip .tooltip-content {
+			display: inline-block;
+			position: absolute;
+			width: 80px;
+			height: 40px;
+			border-radius: 5px;
+			background-color: #fff;
+			left: 50%;
+			margin-left: -40px;
+			bottom: 100%;
+			margin-bottom: 30px;
+			opacity: 0;
+
+			transition: all 0.5s ease-in-out;
+			-webkit-transition: all 0.5s ease-in-out;
+			-ms-transition: all 0.5s ease-in-out;
+			-moz-transition: all 0.5s ease-in-out;
+		}
+		.headerNav .tooltip .tooltip-content::before {
+			display: block;
+			content: attr(title);
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			color: #000;
+			text-align: center;
+			line-height: 40px;
+			font-size: 16px;
+
+		}
+		.headerNav .tooltip .tooltip-content::after {
+			display: block;
+			content: "";
+			position: absolute;
+			width: 0;
+			height: 0;
+			border: 10px solid transparent;
+			border-top-color: #fff;
+			left: 50%;
+			margin-left: -10px;
+			top: 100%;
+		}
+
+		
+
+
+
+		
+	</style>
+</head>
+<body style="margin:200px;">
+	<nav class="headerNav">
+		<ul>
+			<li>
+				<a href="#" class="tooltip">Home
+					<span class="tooltip-content" title="首页"></span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="tooltip">Project
+					<span class="tooltip-content" title="项目"></span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="tooltip">Window
+					<span class="tooltip-content" title="窗口"></span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>
