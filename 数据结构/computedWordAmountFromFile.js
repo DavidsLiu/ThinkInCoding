@@ -5,7 +5,7 @@ var fs = require('fs');
 */
 
 
-fs.readFile('链式调用.html','utf-8',function(err, data) {
+fs.readFile('hash.js','utf-8',function(err, data) {
     if(err) {
         console.log(err);
     }
@@ -23,6 +23,7 @@ fs.readFile('链式调用.html','utf-8',function(err, data) {
 
 function getWordFromString(str) {
     var len = str.length;
+    //正则表达式获取单词
     var result = str.match(/[a-z]+/gi);
     return result;
 }

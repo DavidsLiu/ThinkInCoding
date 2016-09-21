@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>margin-collapse</title>
+    <style media="screen">
+        * {
+            box-sizing: border-box;
+        }
+        h4 {
+            text-align: center;
+        }
+        p {
+            text-indent: 2em;
+        }
+        .con {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid red;
+            padding: 20px;
+        }
+        .con .top {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 0 auto 50px auto;
+        }
+        .con .sub {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            margin: 50px auto 0 auto;
+        }
+        .con .father {
+            width: 500px;
+            height: 500px;
+            background-color: yellow;
+            margin-top: 50px;
+            /*display: inline-block;*/
+            /*border-top: 1px solid transparent;*/
+            /*overflow: hidden;*/
+            /*padding-top: 10px;*/
+        }
+        .con .father .children {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <h4>Margin Collapse</h4>
+    <p>Margin Collapse发生的情况：（主要是楼主遇到的 -_-!）</p>
+    <h3>第一种是上下两个div的相邻之间的外边距发生的情况：</h3>
+    <div class="con">
+        <div class="top"></div>
+        <div class="sub"></div>
+    </div>
+    <p>由上面的例子应该知道上下两个div的间距应该是100px，但是由于这一特性，它选择了其中最大的距离，也就是50px;</p>
+    <p>对于上面这种情况的最好的解决方案就是规定每个div只设置上边距或者是下边距,从而规避这种问题</p>
+    <h3>第二种是父子div之间的上下边距发生的情况</h3>
+    <div class="con">
+        <div class="father">
+            <div class="children"></div>
+        </div>
+    </div>
+    <p>从上面的例子可以看出父类和子类同时设置margin-top，但是只有父类的margin-top起了作用，并且还是两者的最大值。如何让子类的margin-top的效果出现呢?</p>
+    <p>像这种情况的处理有很多方法</p>
+    <ul>
+        <li>设置父类为inline-block</li>
+        <li>设置父类的border</li>
+        <li>设置父类的overflow:hidden</li>
+        <li>设置父类的padding-top</li>
+    </ul>
+</body>
+</html>
