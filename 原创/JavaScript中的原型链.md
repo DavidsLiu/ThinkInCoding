@@ -20,8 +20,12 @@
     }
     Student.prototype = Object.create(People.prototype);
     Student.prototype.constructor = Student;
+    var xiaoming = new Student({
+        name: 'xiaoming',
+        age: 21,
+        sex: 'man',
+        math: 'A'
+    });
 ```
     这是JavaScript中的一个简单的继承，本文就针对这个例子来讨论JavaScript的原型链，话不多，上图（自己画了一个，不是特别美观。。）
-    <center>
-    ![原型链图片](http://o8sux93eg.bkt.clouddn.com/JavaScript%E5%8E%9F%E5%9E%8B%E9%93%BE.pdf "这是原型链图片")
-    </center>
+<center>![原型链图片](http://o8sux93eg.bkt.clouddn.com/JavaScript%E5%8E%9F%E5%9E%8B%E9%93%BE.pdf "这是原型链图片")</center>
