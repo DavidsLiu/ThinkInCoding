@@ -12,12 +12,8 @@
 
 
         /*
-            原型链是依靠__proto__传递的。
-            为什么在javascript万物皆对象。null生万物
-            只有函数对象才有prototype属性  那为什么Object.prototype ,Object.__proto__ === Funciton.prototype
-            其他的对象只有__proto__属性。
             constructor(构造器属性)实际上就是相当于一种循环引用 ， 例如 Function.prototype.constructor === Function
-            js中的函数式一等公民 Function.prototype.__proto__ === Object.prototype
+            
             __proto__多指向其构造器的prototype: xiaoming.__proto__ === Student.prototype
         */
         function People(options) {
