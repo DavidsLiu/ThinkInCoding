@@ -35,7 +35,7 @@
     为什么人们多说JavaScript中万物皆是对象，由图可知，沿着他们的原型链，最终多会到达Object.prototype。
 
 #####问题二
-    只有函数对象才有prototype属性，那么为什么Object有prototype属性。从图中可知，Object.__proto__ === Function.prototype.这下明白了吧，其实Object也是由Function构造而成。而其他的对象只拥有__proto__属性。
+    对象都有prototype和__proto__属性，而对象的实例只有__proto__属性。
 
 #####问题三
     constructor(构造器属性)，对于这个我的理解是，它相当于一种循环引用，例如Function.prototype.constructor = Function;
