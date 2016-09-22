@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="daiqingyun">
+    <title>prototype</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+
+        /*
+            原型链是依靠__proto__传递的。
+            为什么在javascript万物皆对象。null生万物
+            只有函数对象才有prototype属性  那为什么Object.prototype ,Object.__proto__ === Funciton.prototype
+            其他的对象只有__proto__属性。
+            constructor(构造器属性)实际上就是相当于一种循环引用 ， 例如 Function.prototype.constructor === Function
+            js中的函数式一等公民 Function.prototype.__proto__ === Object.prototype
+            __proto__多指向其构造器的prototype: xiaoming.__proto__ === Student.prototype
+        */
+        function People(options) {
+            this.name = options.name;
+            this.age = options.age;
+            this.sex = options.sex;
+        }
+        People.prototype.say = function() {
+            console.log('my name is ' + this.name);
+        }
+
+        function Student(options) {
+            People.call(this,options);
+            this.math = options.math;
+        }
+        Student.prototype = Object.create(People.prototype);
+        Student.prototype.constructor = Student;
+
+        var xiaoming = new Student({
+            name: 'xiaoming',
+            age: 21,
+            sex: 'man',
+            math: 'A'
+        });
+
+        //原型链对遍历的影响， hasOwnProperty的使用
+        for (var variable in xiaoming) {
+
+            console.log(variable);
+            if(xiaoming.hasOwnProperty(variable)) {
+                console.log("=========" + variable);
+            }
+        }
+
+        console.log(Object.prototype.__proto__ === null);
+        console.log(Function.prototype.__proto__ === Object.prototype);
+        console.log(Object.__proto__ === Function.prototype);
+        console.log(Function.__proto__ === Function.prototype);
+        console.log(People.__proto__ === Function.prototype);
+        console.log(xiaoming.__proto__ === Student.prototype);
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
