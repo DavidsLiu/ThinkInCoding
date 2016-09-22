@@ -44,6 +44,6 @@
     __proto__多指向其构造器的prototype: xiaoming.__proto === Student.prototype。
 
 #####问题五
-    为什么我们在使用for in 的时候，总是要强调要使用Object.hasOwnProperty(str)呢，因为在forin中，会沿着原型链查找，就比如上面xiaoming的
-    例子，如果我们不使用Object.hasOwnProperty(str),遍历出来的结果会包含：constructor say 。 为了安全起见，在使用forin时还是最好使
-    用Object.hasOwnProperty(str).
+    为什么我们在使用for in 的时候，总是要强调要使用Object.hasOwnProperty(str)呢，因为在forin中，会沿着原型链查找。
+    就比如上面xiaoming的例子，如果我们不使用Object.hasOwnProperty(str),遍历出来的结果会包含：constructor say。
+    为了安全起见，在使用forin时还是最好使用Object.hasOwnProperty(str)。
