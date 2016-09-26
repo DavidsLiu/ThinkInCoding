@@ -41,7 +41,7 @@
     constructor(构造器属性)，对于这个我的理解是，它相当于一种循环引用，例如Function.prototype.constructor = Function;
 
 #####问题四
-    __proto__多指向其构造器的prototype: xiaoming.__proto === Student.prototype。
+    __proto__多指向其构造器的prototype: xiaoming.__proto__ === Student.prototype。
 
 #####问题五
     为什么我们在使用for in 的时候，总是要强调要使用Object.hasOwnProperty(str)呢，因为在forin中，会沿着原型链查找。
