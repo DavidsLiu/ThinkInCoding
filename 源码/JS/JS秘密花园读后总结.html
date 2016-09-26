@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript秘密花园读后总结</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /*
+            在JavaScript中所有的变量多能当做对象使用，例外就是null 和 undefined
+        */
+        console.log("-------------------------------------");
+        console.log(false.toString());
+        console.log(1..toString());//小数点造成的错误
+        console.log(1 .toString());
+        console.log((1).toString());
+        console.log(Object.prototype.__proto__ === null);
+
+
+        /*
+            对象的理解
+        */
+        console.log("-------------------------------------");
+        var student = {
+            name: 'daiiqngyun',
+            age: 21
+        }
+        var temp = "name";
+        student.sex = 1;
+        console.log(student.name);
+        console.log(student['name']);
+        console.log(student[temp]);
+        console.log(student.sex);
+        student['sex'] = 2;
+        console.log(student.sex);
+        /*
+            Object.defineProperty(obj,props, descriptor)
+            descriptor {
+                configurable: false, //是否可以修改这个属性的配置
+                enumerable: false, //是否可以遍历
+                writable: false, //是否可以修改
+                value: null, //值
+                set: undefined, //赋值
+                get: undefined //读取
+            }
+        }
+        */
+        var people = {};
+        Object.defineProperty(people,'name',{
+            enumerable: true,
+            configurable: true,
+            writable: false,
+            value: 'daiqingyun'
+        });
+
+        /*
+            函数
+        */
+        console.log("-------------------------------------");
+
+        console.log(some);
+        console.log(someone);
+        //对于函数赋值表达式
+        var someone = function bar() {
+            //函数名在内部始终有效
+            console.log('函数赋值表达式');
+        }
+        //bar 在外部无效
+        console.log(someone);
+        //执行前会被解析， 在上下文的任意一个地方多可以使用
+        function some() {
+            console.log("some");
+        }
+
+    </script>
+</body>
+</html>
