@@ -101,7 +101,7 @@
     4、变量声明提示。
     5、访问函数内foo变量的步骤: 当前作用域内是否有var foo的定义 --》 函数的形参是否用了foo ---> 函数的本身叫不叫foo ---> 重复
     6、命名空间，可以采用IIFE(立即执行函数) (function(){}())、(function(){})()、+function(){}()。
-    7、（后面我会专门总结一下作用域链） ^-^
+    7、关于作用域好的文章 [传送门](http://blog.leapoahead.com/2015/09/15/js-closure/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 #####类型
     1、强烈建议放弃==，使用===。       
