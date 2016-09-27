@@ -16,7 +16,7 @@
 
 #####对象的理解
   1、点语法与方括号语法的使用，两个基本相同，但是对于key为变量的时候，只能用方括号语法。
-  2、一般我们都是用{}声明一个对象，(不要告诉我还有new Object -_-!)。而我们在添加属性的时候通常多是直接用点语法或者方括号语法添加，现在我推荐大家采用Object.defineProperty(obj,prop,descriptor)来定义。
+  2、一般我们都是用{}声明一个对象，(不要告诉我还有new Object() -_-!)。而我们在添加属性的时候通常多是直接用点语法或者方括号语法添加，现在我推荐大家采用Object.defineProperty(obj,prop,descriptor)来定义。
 
 ```js
     /*
@@ -54,3 +54,86 @@
     而且在外部bar是不可见的。
 
 #####this
+  其实对于this我的理解是，谁调用它，它就指向谁。
+  比较特殊的是，new 的构造函数，会将this指向新构造的对象。
+  更改this的方法：apply(thisArg,[argsArray]), call(thisArg,arg1,arg2...), bind(thisArg,arg1,arg2...)
+```js
+    //apply和call的区别主要在于传入的参数形式不一样。
+    //bind的实现方法
+    if(!function(){}.bind) {
+        Function.prototype.bind = function(context){
+           var self = this;
+           var args = Array.prototype.slice.call(arguments,1);
+           return function(){
+               return self.apply(context, args);
+           }
+        }
+    }
+```  
+
+#####闭包
+  简单的闭包形式
+```js
+    function some(start) {
+        //变量li为私有变量，只能通过add和get这两个闭包访问。
+        var li = start;
+        return {
+            add: function() {
+                li++;
+            },
+            get: function() {
+                return li;
+            }
+        }
+    }
+```
+
+#####arguments对象
+  1、arguments是类数组对象。
+  2、转化为数组：[].slice.call(arguments);
+  3、arguments与形参是双向绑定的，因为arguments内部创建了getter和setter方法。
+  4、不要使用arguments.callee以及它的属性。
+
+#####作用域
+  1、es5只支持函数作用域，没有块级作用域。
+  2、JavaScript没有显示的命名空间，更糟糕的是声明一个全局变量就变成了全局对象的属性。
+  3、千万不要有隐式全局变量的写法。（不加var 就使用一个变量）
+  4、变量声明提示。
+  5、访问函数内foo变量的步骤: 当前作用域内是否有var foo的定义 --》 函数的形参是否用了foo ---> 函数的本身叫不叫foo ---> 重复
+  6、命名空间，可以采用IIFE(立即执行函数) (function(){}())、(function(){})()、+function(){}()。
+  7、（后面我会专门总结一下作用域链） ^-^
+
+#####类型
+  1、强烈建议放弃==，使用===。       
+  2、对于基本类型采用=时多是深复制，而对于数组和对象则是浅复制。以下为实现方式：
+```js
+    function copy(data) {
+        var type = Object.prototype.toString.call(data);
+        if(type === '[object Array]') {
+            var temp = [];
+            var length = data.length;
+            for(var i = 0; i < length; i++) {
+                temp.push(data[i]);
+            }
+            return temp;
+        }
+        else if(type === '[object Object]') {
+            var temp = {};
+            for (var p in data) {
+                if (data.hasOwnProperty(p)) {
+                    temp[p] = data.p;
+                }
+            }
+            return temp;
+        }
+        else {
+            return data;
+        }
+    }
+```  
+  3、typeof操作符往往得不到我们预期的结果，它在大部分的时间里多返回object。
+  4、instanceof操作符来比较两个构造函数，只有比较自定义对象时才有意义，比较内置对象将和typeof一样毫无用处。
+  5、精确的获得对象的类型，采用 Object.prototype.toString.call(); --> '[object ****]'
+  6、转化为字符串: '' + 10
+  7、转化为数字: + '10'
+  8、转化为布尔: !!'foo'

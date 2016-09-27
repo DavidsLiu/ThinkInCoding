@@ -74,6 +74,92 @@
         function some() {
             console.log("some");
         }
+        /*
+            this
+        */
+        console.log("-------------------------------------");
+
+         //apply和call的区别主要在于传入的参数形式不一样。
+         //bind的实现方法
+         if(!function(){}.bind) {
+             Function.prototype.bind = function(context){
+                var self = this;
+                var args = Array.prototype.slice.call(arguments,1);
+                return function(){
+                    return self.apply(context, args);
+                }
+             }
+         }
+
+         /*
+             闭包
+         */
+         console.log("-------------------------------------");
+         function some(start) {
+             var li = start;
+             return {
+                 add: function() {
+                     li++;
+                 },
+                 get: function() {
+                     return li;
+                 }
+             }
+         }
+
+         var some1 = some(4);
+         some1.add();
+         console.log(some1.get());
+
+
+
+         /*
+             arguments
+         */
+         console.log("-------------------------------------");
+         function example() {
+            var args = [].slice.call(arguments);
+            console.log(args);
+         }
+
+         example(1,2,3,4,5);
+         /*
+             类型
+         */
+         console.log("-------------------------------------");
+
+        function copy(data) {
+            var type = Object.prototype.toString.call(data);
+            if(type === '[object Array]') {
+                var temp = [];
+                var length = data.length;
+                for(var i = 0; i < length; i++) {
+                    temp.push(data[i]);
+                }
+                return temp;
+            }
+            else if(type === '[object Object]') {
+                var temp = {};
+                for (var p in data) {
+                    if (data.hasOwnProperty(p)) {
+                        temp[p] = data.p;
+                    }
+                }
+                return temp;
+            }
+            else {
+                return data;
+            }
+        }
+
+        var someArray = 2;
+
+        var b = copy(someArray);
+        b = 'daiqingyun';
+        console.log(someArray);
+        console.log(b);
+
+
 
     </script>
 </body>
