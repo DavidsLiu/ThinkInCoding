@@ -43,7 +43,7 @@
 
   删除对象的属性主要用的delete方法
 
-#####原型 [传送门](https://github.com/15751165579/ThinkInCoding/blob/master/%E5%8E%9F%E5%88%9B/JavaScript%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+#####原型链 [传送门](https://github.com/15751165579/ThinkInCoding/blob/master/%E5%8E%9F%E5%88%9B/JavaScript%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
 #####函数
     function bar() {}
