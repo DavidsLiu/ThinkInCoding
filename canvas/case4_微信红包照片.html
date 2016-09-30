@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas</title>
+  <style media="screen">
+
+    .blur {
+        /*   高斯算法 */
+        filter: blur(10px);
+        -webkit-filter: blur(10px);
+        -ms-filter: blur(10px);
+        -moz-filter: blur(10px);
+    }
+    .con {
+      position: relative;
+      margin: 0 auto;
+      width: 333.5px;
+      height: 500px;
+      font-size: 0;
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="con">
+        <img src="img/xienan4.jpg" class="blur" width="333.5" height="500" alt="" />
+        <!-- 原图-->
+        <canvas id="imgCanvas" style=""></canvas>
+    </div>
+
+
+
+    <button type="button" name="button" onclick="show()">发红包</button>
+    <button type="button" name="button" onclick="look()">随便一瞅</button>
+
+    <script type="text/javascript">
+
+
+        // fliter
+        // blur(p) 模糊
+        // grayscale(a) 0-1
+        //sepia(a) 0 - 1
+        //saturate(a) 饱和度
+        //hue-rotate(角度)
+        //invert(a) 0 - 1 翻转
+        //opacity(a) 0 - 1 不透明度
+        //brightness(a) 0 - 1 明度
+        //contrast(a) 对比度
+        //drop-shadow(...) 阴影
+        var point ={x: 100, y: 100};
+        var dis = 50;
+        var image = new Image();
+
+        var imgCanvas = document.getElementById('imgCanvas');
+        var imgContext = imgCanvas.getContext('2d');
+
+
+        imgCanvas.width = 333.5;
+        imgCanvas.height = 500;
+
+        window.onload = function(){
+            image.src = "img/xienan4.jpg";
+        }
+
+
+        function pointToCanvas(point) {
+            var box = imgCanvas.getBoundingClientRect();
+            var x = point.x - box.left;
+            var y = point.y - box.top;
+
+            return {
+                x: x,
+                y: y
+            }
+        }
+
+        function drawReader(point,dis) {
+
+          imgContext.clearRect(0,0,imgCanvas.width,imgCanvas.height);
+          var sx = point.x - dis;
+          var sy = point.y - dis;
+
+          var dx = point.x - dis;
+          var dy = point.y - dis;
+
+
+          imgContext.save();
+          imgContext.beginPath();
+          imgContext.arc(point.x,point.y,dis,0,Math.PI * 2);
+          imgContext.clip();
+          imgContext.drawImage(image,0,0,imgCanvas.width,imgCanvas.height);
+          imgContext.restore();
+
+        }
+
+
+        function look() {
+            var x = Math.random() * 333.5;
+            var y = Math.random() * 500;
+            point = {
+              x: x,
+              y: y
+            }
+            drawReader(point,dis);
+        }
+        
+
+        function show() {
+            var r = dis;
+
+            //用于做动画有大的缺陷
+            var id = setInterval(function(){
+
+                if(r > 1000) {
+                    clearInterval(id);
+                }
+                drawReader(point,r);
+                r += 20;
+
+            },30);
+        }
+
+
+
+
+
+
+    </script>
+</body>
+</html>

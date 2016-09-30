@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scope Chain</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        //基本情况
+        // var foo = 1;
+        // var bar = 2;
+        // function myFun() {
+        //     var a = 1;
+        //     var b = 2;
+        //     foo = 10;
+        //     var bar = 20;
+        // }
+
+        //嵌套的情况
+        function createCounter(num) {
+            var counter = num;
+
+            function add(value) {
+                counter += value;
+            }
+            function getCounter(){
+                return counter;
+            }
+            return {
+                add: add,
+                get: getCounter
+            }
+        }
+
+        var myCounter = createCounter(100);
+    </script>
+</body>
+</html>
