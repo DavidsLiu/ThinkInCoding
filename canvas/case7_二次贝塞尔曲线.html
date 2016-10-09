@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>二次贝塞尔曲线</title>
+  <style media="screen">
+    canvas {
+      display: block;
+      margin: 0 auto;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas">
+    您的浏览器不支持canvas
+  </canvas>
+
+  <script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    canvas.width = 1200;
+    canvas.height = 600;
+
+    //起始点
+    var startPoint = {
+      x: 100,
+      y: 100
+    }
+
+    //控制点
+    var controllPoint = {
+      x: 500,
+      y: 200
+    }
+
+    //结束点
+    var endPoint = {
+      x: 300,
+      y: 500
+    }
+
+    //鼠标的坐标
+    var point = {
+      x: 0,
+      y: 0
+    }
+
+    var flag = false;
+
+
+
+    canvas.addEventListener('click',function(e){
+      startPoint = pointToCanvas({
+        x: e.clientX,
+        y: e.clientY
+      });
+
+      drawAgain();
+      console.log(context);
+    },false);
+
+    drawAgain();
+
+    function drawAgain() {
+      context.clearRect(0,0,canvas.width,canvas.height);
+      draw(context,startPoint.x, startPoint.y,controllPoint.x,controllPoint.y,endPoint.x,endPoint.y);
+      drawRound(context,startPoint.x,startPoint.y,10);
+      drawRound(context,controllPoint.x,controllPoint.y,10);
+      drawRound(context,endPoint.x,endPoint.y,10);
+    }
+
+
+
+    function pointToCanvas(point) {
+      var box = canvas.getBoundingClientRect();
+      var result = {
+        x: point.x - box.left,
+        y: point.y - box.top
+      }
+      return result;
+    }
+
+    function draw(ctx,x0,y0,x1,y1,x2,y2) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(x0,y0);
+      ctx.quadraticCurveTo(x1,y1,x2,y2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function drawRound(ctx, x, y, r) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(x,y,r,0,Math.PI * 2,false);
+        ctx.stroke();
+        ctx.restore();
+    }
+  </script>
+</body>
+</html>

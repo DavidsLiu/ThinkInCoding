@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>剪辑区域</title>
+  <style media="screen">
+    canvas {
+      display: block;
+      margin: 0 auto;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="1200" height="600"></canvas>
+
+  <script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var step = 40;
+    var some = setInterval(function(){
+
+      draw(step);
+      if(step < 600) {
+        step += 20;
+      }
+      else {
+        clearInterval(some);
+      }
+    },40);
+
+    function draw(r) {
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.save();
+      context.beginPath();
+      context.fillStyle = "black";
+      context.fillRect(0,0,canvas.width, canvas.height);
+
+      context.beginPath();
+      context.arc(600,300,r,0,Math.PI * 2, false);
+      context.fillStyle = "white";
+      context.fill();
+      context.clip();
+
+      context.font = "bold 80px Arial";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillStyle = "red";
+      context.fillText('使用canvas探照灯文字',canvas.width / 2, canvas.height / 2);
+
+      context.restore();
+    }
+
+
+  </script>
+</body>
+</html>
