@@ -22,7 +22,7 @@
     this.name = name;
     return this;
   }
-  var xiaoming = People('xiaoming'); //小手一滑new忘记写了
+  var xiaoming = People('xiaoming'); //小手一滑new忘记写了（这也是为什么构造器函数的首字母多大写的原因）
   console.log(xiaoming.name); //xiaoming
   console.log(name); //xiaoming
   ```
