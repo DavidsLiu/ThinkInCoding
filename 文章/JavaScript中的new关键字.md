@@ -104,7 +104,7 @@
 ####JQuery中如何消除new。
   通过[张鑫旭大神的文章](http://www.zhangxinxu.com/wordpress/2013/07/jquery-%E5%8E%9F%E7%90%86-%E6%9C%BA%E5%88%B6/)，让我对jQuery的理解更进一步，下面是一个简单的jQuery的实现：
   ```js
-  (function(window){
+  (function(window, undefined){
     var jQuery = function(selector, context) {
       //返回一个__proto__指向jQuery.fn.init.prototype的实例。
       return new jQuery.fn.init(selector,context);
