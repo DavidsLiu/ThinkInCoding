@@ -102,7 +102,7 @@
   ```
 
 ####JQuery中如何消除new。
-  通过[张鑫旭大神的文章](http://www.zhangxinxu.com/wordpress/2013/07/jquery-%E5%8E%9F%E7%90%86-%E6%9C%BA%E5%88%B6/)，让我对jQuery的理解更进一步，下面是我理解后的代码：
+  通过[张鑫旭大神的文章](http://www.zhangxinxu.com/wordpress/2013/07/jquery-%E5%8E%9F%E7%90%86-%E6%9C%BA%E5%88%B6/)，让我对jQuery的理解更进一步，下面是一个简单的jQuery的实现：
   ```js
   (function(window){
     var jQuery = function(selector, context) {
@@ -117,6 +117,7 @@
         for(var i = 0; i < this.length; i++){
           this[i] = nodeList[i];
         }
+        //返回this主要用于链式调用
         return this;
       },
       //遍历器
