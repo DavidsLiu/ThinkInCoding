@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="daiqingyun">
+  <title>JQuery的无new创建以及链式调用</title>
+</head>
+<body>
+  <div class="demo">
+    <span>哈哈</span>
+  </div>
+  <div class="demo">哈哈哈</div>
+  <button type="button" name="button" id="btn">点击</button>
+  <script type="text/javascript">
+
+    (function(window){
+
+      var jQuery = function(selector, context) {
+        //返回一个__proto__指向jQuery.fn.init.prototype的实例。
+        return new jQuery.fn.init(selector,context);
+      }
+      //隐藏prototype
+      jQuery.fn = jQuery.prototype = {
+        init: function(selector, context){
+          var nodeList = document.querySelectorAll(selector);
+          this.length = nodeList.length;
+          for(var i = 0; i < this.length; i++){
+            this[i] = nodeList[i];
+          }
+          return this;
+        },
+        //遍历器
+        each: function(fn){
+          var length = this.length;
+          for(var i = 0; i < length; i++){
+            fn.call(this[i],i,this[i]);
+          }
+          return this;
+        },
+        hide: function(){
+          this.each(function(){
+            this.style.display = 'none';
+          });
+          return this;
+        },
+        red:function(){
+          this.each(function(){
+            this.style.backgroundColor = "red";
+          });
+
+          return this;
+        },
+        font:function(){
+          this.each(function(){
+            this.style.color = "white";
+          });
+          return this;
+        }
+      }
+      //将实例的__proto__指向jQuery.prototype
+      jQuery.fn.init.prototype = jQuery.prototype;
+
+      window.$ = jQuery;
+
+    })(window);
+    $('#btn')[0].onclick = function(){
+      $('div').red().font();
+    }
+
+
+  </script>
+</body>
+</html>
