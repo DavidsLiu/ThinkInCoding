@@ -140,6 +140,7 @@
         var htmlStr = '';
         for(var i = 0; i < len; i++) {
           var temp = base;
+          //使用正则那是相当的方便啊
           temp = temp.replace(/\*/,arr[i]);
           htmlStr += temp;
         }
