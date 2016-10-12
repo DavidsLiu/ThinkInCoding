@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="daiqingyun">
+  <title>HTML5 datalist</title>
+  <style media="screen">
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .demo {
+      position: relative;
+      margin: 50px auto;
+      width: 400px;
+    }
+    .demo > span {
+      display: inline-block;
+      width: 100px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      color: #fff;
+      background-color: rgb(196,0,0);
+      font-size: 16px;
+    }
+    dl, dt, dd {
+      padding: 0;
+      margin: 0;
+    }
+    .goods {
+      outline: 0;
+      width: 300px;
+      padding: 5px 3px 5px 5px;
+      border: 2px solid rgb(196,0,0);
+      font-size: 16px;
+    }
+    .goods::-webkit-input-placeholder { /* WebKit browsers */
+      color: rgb(213,213,213);
+      font-size: 14px;
+    }
+    .goods:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: rgb(213,213,213);
+      font-size: 14px;
+    }
+    .goods::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: rgb(213,213,213);
+      font-size: 14px;
+    }
+    .goods:-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: rgb(213,213,213);
+      font-size: 14px;
+    }
+    .tip {
+      display: none;
+      position: absolute;
+      top: 32px;
+      left: 0;
+      width: 300px;
+      background-color: #fff;
+      border: 1px solid rgb(213,213,213);
+      z-index: 999;
+    }
+    .tip a {
+      display: block;
+      font-size: 12px;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      text-align: left;
+      text-indent: 5px;
+      color: rgb(213,213,213);
+    }
+    .tip a:hover {
+      background-color: rgb(196,0,0);
+      color: #fff;
+    }
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  <div class="demo">
+    <input class="goods" id="goods" type="text" name="name" value="" maxlength="20" placeholder="小清新短裤"><span>搜索</span>
+    <dl class="tip" id="tip">
+      <dd>
+
+      </dd>
+    </dl>
+  </div>
+
+  <script type="text/javascript">
+    //在 chrome中 datalist能很好的运作  但是在firfox中，当value和label多有值时，他只会显示label的值。
+
+    //硬伤 UI
+
+    var datalist = ['男裤','男鞋','男士外套','男士内衣','男袜','男士洗面奶','男士皮带'];
+    var base = '<a href="javascript:;">*</a>';
+    var tip = document.getElementById('tip');
+    var goods = document.getElementById('goods');
+    goods.addEventListener('input',function(){
+      if(this.value) {
+        //当有值得时候，查找对应的提示项。
+        //这里我就用少量数据模拟了。
+        update(this.value);
+      }
+      else {
+        //没有输入的隐藏掉提示框
+        tip.style.display = "none";
+      }
+    },false);
+
+    //点击推荐的结果 进入。
+    tip.addEventListener('click',function(e){
+      var target = e.target;
+      if(target.tagName === 'A') {
+        goods.value = target.innerHTML;
+        tip.style.display = 'none';
+      }
+    },false);
+
+    //查找数据
+    function update(val) {
+      var arr = [];
+      datalist.map(function(item){
+        if(item.indexOf(val) !== -1) {
+          arr.push(item);
+        }
+      });
+      if(arr.length !== 0) {
+        var len = arr.length;
+        var htmlStr = '';
+        for(var i = 0; i < len; i++) {
+          var temp = base;
+          temp = temp.replace(/\*/,arr[i]);
+          htmlStr += temp;
+        }
+        tip.getElementsByTagName('dd')[0].innerHTML = htmlStr;
+        tip.style.display = "block";
+      }
+      else {
+        tip.style.display = "none";
+      }
+    }
+
+    /*
+      func: 需要执行的函数
+      wait: 时间间隔
+    */
+    function throttle(func, wait) {
+      var context, args, result;
+      var timeId = null;
+      var previous = 0;
+      return function() {
+        var now = Date.now();
+        //计算剩下的时间
+        var remaining = wait - (now - previous);
+        context = this;
+        args = arguments;
+        //此处很严谨 防止篡改系统是时间
+        if (remaining <= 0 || remaining > wait) {
+           //setTimeout 有最小的执行间隔 ，  因此如果 到达wait时 上一次的timeout可能并没有执行呢，所以要先清除
+           if(timeId) {
+             clearTimeout(timeId);
+             timeId = null;
+           }
+           previous = now;
+           result = func.apply(context, args);
+           if(!timeId) {
+             context = args = null;
+           }
+        }
+
+        return result;
+      }
+    }
+
+    // var a = 1;
+    // setInterval(throttle(function(a){
+    //   console.log('start');
+    // },1000),100);
+
+
+
+    //函数节流
+    //underscore v1.7.0 源码
+    // _.throttle = function(func, wait, options) {
+    //   /*
+    //     options的默认值
+    //     表示首次调用返回值方法时，会马上调用func,否则仅会记录当前时刻，但第二次调用的时间间隔大于wait时，才调用func
+    //   */
+    //   var context, args, result;
+    //   var timeout = null;
+    //   var previous = 0;
+    //   options = options || {};
+    //   var later = function(){
+    //     previous = options.leading === false ? 0 : _.now();
+    //     timeout = null;
+    //     result = func.apply(context, args);
+    //     if(!timeout) {
+    //       context = args = null;
+    //     }
+    //   }
+    //   return function(){
+    //     var now = _.now();
+    //     if(!previous && options.leading === false) {
+    //       previous = now;
+    //     }
+    //     //计算剩下的时间
+    //     var remaining = wait - (now - previous);
+    //     context = this;
+    //     args = arguments;
+    //     //当到达wait指定的时间，调用func
+    //     //精彩之处 按理来说remaining <= 0已经足够证明已经到达wait的时间间隔，但这里还考虑到假如客户端修改了系统时间则马上执行func函数
+    //     if(remaining <= 0 || remaining > wait) {
+    //       //setTimeout存在最小精度的问题，因此存在到达wait，但是上一次的setTimeout并没有执行，所以要先清除setTimeout
+    //       if(timeout) {
+    //         clearTimeout(timeout);
+    //         timeout = null;
+    //       }
+    //       previous = now;
+    //       result = func.apply(context, args);
+    //       if(!timeout) {
+    //         context = args = null;
+    //       }
+    //     }
+    //     else if(!timeout && options.trailing !== false) {
+    //       timeout = setTimeout(later, remaining);
+    //     }
+    //
+    //     return result;
+    //   }
+    //
+    // }
+
+  </script>
+</body>
+</html>
