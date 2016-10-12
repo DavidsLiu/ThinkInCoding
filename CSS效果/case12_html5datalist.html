@@ -191,56 +191,6 @@
 
 
 
-    //函数节流
-    //underscore v1.7.0 源码
-    // _.throttle = function(func, wait, options) {
-    //   /*
-    //     options的默认值
-    //     表示首次调用返回值方法时，会马上调用func,否则仅会记录当前时刻，但第二次调用的时间间隔大于wait时，才调用func
-    //   */
-    //   var context, args, result;
-    //   var timeout = null;
-    //   var previous = 0;
-    //   options = options || {};
-    //   var later = function(){
-    //     previous = options.leading === false ? 0 : _.now();
-    //     timeout = null;
-    //     result = func.apply(context, args);
-    //     if(!timeout) {
-    //       context = args = null;
-    //     }
-    //   }
-    //   return function(){
-    //     var now = _.now();
-    //     if(!previous && options.leading === false) {
-    //       previous = now;
-    //     }
-    //     //计算剩下的时间
-    //     var remaining = wait - (now - previous);
-    //     context = this;
-    //     args = arguments;
-    //     //当到达wait指定的时间，调用func
-    //     //精彩之处 按理来说remaining <= 0已经足够证明已经到达wait的时间间隔，但这里还考虑到假如客户端修改了系统时间则马上执行func函数
-    //     if(remaining <= 0 || remaining > wait) {
-    //       //setTimeout存在最小精度的问题，因此存在到达wait，但是上一次的setTimeout并没有执行，所以要先清除setTimeout
-    //       if(timeout) {
-    //         clearTimeout(timeout);
-    //         timeout = null;
-    //       }
-    //       previous = now;
-    //       result = func.apply(context, args);
-    //       if(!timeout) {
-    //         context = args = null;
-    //       }
-    //     }
-    //     else if(!timeout && options.trailing !== false) {
-    //       timeout = setTimeout(later, remaining);
-    //     }
-    //
-    //     return result;
-    //   }
-    //
-    // }
 
   </script>
 </body>
