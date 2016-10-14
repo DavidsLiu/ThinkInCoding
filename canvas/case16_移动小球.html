@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>移动的小球</title>
+  <style media="screen">
+    canvas {
+      display: block;
+      margin: 0 auto;
+      border: 1px solid rgb(213,213,213);
+    }
+  </style>
+</head>
+<body>
+  <h3>60FPS</h3>
+  <canvas id="canvas" width="1200" height="600"></canvas>
+
+  </script>
+  <script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+        context = canvas.getContext('2d'),
+        point = null,
+        count = 0;
+
+    context.strokeStyle = "red";
+    context.fillStyle = "red";
+    canvas.addEventListener('mousemove',throttle(draw,1000 / 60),false);
+
+    // /*
+    //   ---------------------
+    //     初学者一般会这样写
+    //   ---------------------
+    // */
+    // canvas.addEventListener('mousemove',function(e) {
+    //   draw(e);
+    // },false);
+    /*
+      ----------------------------
+        绘制圆的方法
+      ----------------------------
+    */
+    function draw() {
+      var e = arguments[0];
+      var point = pointToCanvas({x: e.clientX, y: e.clientY});
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.beginPath();
+      context.arc(point.x,point.y,20,0,Math.PI * 2, false);
+      context.stroke();
+      context.fill();
+    }
+    /*
+      ---------------------------
+          转化坐标：这个方法很重要
+      ---------------------------
+      @param point 鼠标的坐标
+
+      @return canvas画布上的坐标
+    */
+
+    function pointToCanvas(point) {
+      var box = canvas.getBoundingClientRect();
+      return {
+        x: point.x - box.left,
+        y: point.y - box.top
+      }
+    }
+
+    /*
+      函数节流 throttle
+      ---------------------------------------------
+        减少函数不必要的执行次数。不会重置等待时间。
+      ---------------------------------------------
+      @param func 需要节流的函数
+      @param wait 等待的时间
+
+      @return result
+    */
+    function throttle(func, wait) {
+      var context, args, result;
+      //定时器ID
+      var timeId = null;
+      //延迟执行函数
+      var later = function() {
+        timeId = null;
+        result = func.apply(context, args);
+        context = args = null;
+      }
+      return function(){
+        var now = Date.now();
+        context = this;
+        args = arguments;
+        if(!timeId) {
+          timeId = setTimeout(later, wait);
+        }
+        return result;
+      }
+    }
+
+
+
+    /*
+      函数去抖 debounce
+      ----------------------------
+        一旦触发，便会重置等待时间
+      ----------------------------
+      @param func 去抖的函数
+      @param wait 等待的间隔
+
+      @return result
+    */
+    function debounce(func, wait) {
+      var context, args, result;
+      //定时器唯一标识
+      var timeId = null;
+
+      //延迟执行
+      var later = function() {
+        timeId = null;
+        result = func.apply(context, args);
+        context = args = null;
+      }
+
+      return function() {
+        context = this;
+        args = arguments;
+        if(!timeId) {
+          timeId = setTimeout(later, wait);
+        }
+        else {
+          //重置等待时间
+          clearTimeout(timeId);
+          timeId = setTimeout(later, wait);
+        }
+
+        return result;
+      }
+    }
+
+
+  </script>
+</body>
+</html>
