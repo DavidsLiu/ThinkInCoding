@@ -180,8 +180,46 @@
   offset: 渐变开始的位置 0% - 100%
 ```
 
-####裁剪
+####常用的几个标签
+```js
+  ----------
+    裁剪
+  ----------
   <clipPath id="">裁剪路径</clipPath>
+
+  ----------
+    引用元素
+  ----------
+  <defs>声明引用元素</defs>
+
+  ----------
+    拷贝
+  ----------
+  <use x="" y="" width="" height="" xlink:href="id"></use>    
+  (x, y): 克隆对象的左上角坐标
+  width: 克隆对象的宽度
+  height: 克隆对象的高度
+  xlink:href 引用克隆对象
+
+  ----------
+    模式
+  ----------  
+  <pattern id="" width="" height="" patternUnits="" patternTransform="">模式内的形状</pattern>
+  width: 模式的宽度
+  height: 模式的高度
+  patternUnits: 定义pattern的坐标系统 userSpaceOnUse(不会对pattern的单位进行缩放) | objectBoundingBox(会)
+  patternTransform: 变换
+
+  ----------
+    遮罩
+  ----------
+  <mask maskUnits="" x='' y="" width="" height="">内容</mask>
+  (x, y): 裁剪的左上角坐标。
+  width: 裁剪的宽度
+  height: 裁剪的高度
+
+```
+
 
 ####CSS3中的svg的影子
 ```js
