@@ -17,7 +17,7 @@
     svg元素可以通过<embed>、<object>或者<iframe>嵌入网页之中，但是我们这里推荐使用<embed>,兼容性比较好。
 
     <embed src="circle.svg" type="image/svg+xml" />
-    
+
     <svg width="" height="">绘制的内容</svg>
   */
 ```
@@ -170,9 +170,9 @@
       滤镜
     -----------------
     <filter id=""></filter>
-    [MDN的案例](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter)
   */
 ```
+  [MDN的案例](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter)
 ####渐变
 ```js
   --------------
