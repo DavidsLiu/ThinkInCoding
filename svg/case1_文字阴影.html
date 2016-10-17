@@ -11,6 +11,28 @@
       position: relative;
       width: 1000px;
       height: 400px;
+      margin: 0 auto;
+      background-color: rgb(250,250,250);
+    }
+
+    #textContent {
+      font-size: 80px;
+    }
+
+    .some {
+      position: relative;
+      margin: 0 auto;
+      width: 400px;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      font-size: 40px;
+      background-color: rgb(250,250,250);
+      text-shadow: 5px 5px 3px rgb(213,213,213);
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
       background-color: rgb(250,250,250);
     }
   </style>
@@ -19,9 +41,34 @@
   <div class="con">
     <svg width="1000" height="400">
       <defs>
-        <pattern id="textPattern" ></pattern>
+        <pattern id="textPattern" width="1" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+          <rect x="0" y="0" width="1" height="2" fill="rgb(213,213,213)"></rect>
+        </pattern>
+        <text id="textContent" x="10" y="300">I Love SVG</text>
       </defs>
+      <use x="8" y="8" width="1000" height="400" xlink:href="#textContent" fill="url(#textPattern)"></use>
+      <use x="0" y="0" width="1000" height="400" xlink:href="#textContent"></use>
     </svg>
   </div>
+  <div class="some">
+    I Love SVG
+  </div>
+
+  <canvas id="canvas" width="800" height="300"></canvas>
+
+  <script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    /*
+      canvas唯一一个Pattern对象的方法是createPattern，但是只能传入图片。
+    */
+    context.shadowOffsetX = 8;
+    context.shadowOffsetY = 8;
+    context.shadowColor = "rgb(213,213,213)";
+    context.shadowBlur = 4;
+    context.font = "60px Helvetica, Arial, sans-serif";
+		context.fillText("I Love SVG",20,200);
+
+  </script>
 </body>
 </html>
