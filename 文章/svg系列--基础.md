@@ -12,10 +12,15 @@
     2、动画
 
 ####如何在网页中引用svg元素
-  svg元素可以通过<embed>、<object>或者<iframe>嵌入网页之中，但是我们这里推荐使用<embed>,兼容性比较好。
-    <embed src="circle.svg" type="image/svg+xml" />
+```js
+  /*
+    svg元素可以通过<embed>、<object>或者<iframe>嵌入网页之中，但是我们这里推荐使用<embed>,兼容性比较好。
 
-  <svg width="" height="">绘制的内容</svg>
+    <embed src="circle.svg" type="image/svg+xml" />
+    
+    <svg width="" height="">绘制的内容</svg>
+  */
+```
 
 ####一些公共属性
 ```js
