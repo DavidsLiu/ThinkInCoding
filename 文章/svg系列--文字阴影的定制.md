@@ -11,6 +11,7 @@
   阴影颜色
 ```
   下面是效果图：
+  
 <center>![image](http://o8sux93eg.bkt.clouddn.com/cssTextShadow.png)</center>
 
 
@@ -26,6 +27,7 @@
 ```  
 
   效果图:
+
 <center>![image](http://o8sux93eg.bkt.clouddn.com/canvasTextShadow.png)</center>
 
 ####svg实现定制的文字阴影
@@ -45,4 +47,5 @@
   实现的思路主要是通过pattern(模式)填充一个文字样式，作为原文字的阴影。上述代码中的defs pattern use 我上篇文章[svg系列-基础](https://github.com/15751165579/ThinkInCoding/blob/master/%E6%96%87%E7%AB%A0/svg%E7%B3%BB%E5%88%97--%E5%9F%BA%E7%A1%80.md)中有他们的基础语法。其实我在MDN上也找了一下canvas的Pattern类，只找到了createPattern()这个方法，但是这个方式只能以图片作为载体，似乎不能完全满足我们的需求。如果有精通canvas的同学，希望能给一个能定制文字阴影的方法。
 
   放上效果图
+
 <center>![image](http://o8sux93eg.bkt.clouddn.com/svgTextShadow.png)</center>
