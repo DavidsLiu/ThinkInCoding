@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="daiqingyun">
+  <title>svg线条动画</title>
+  <style media="screen">
+  .line-animation {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .line-animation svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 0.3s;
+    }
+    .line-animation .l1 path {
+      fill: none;
+      stroke-width: 3;
+      stroke: #666;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: LOADING1 5s linear 0s 1;
+      animation-fill-mode: forwards;
+      transition: all .3s;
+    }
+    @keyframes LOADING1 {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .circle > svg {
+      background-color: rgb(250,250,250);
+    }
+    .circle > svg > path {
+      fill: none;
+      stroke: red;
+      stroke-width: 5px;
+      /* 非零环绕原则 */
+      /*fill-rule: nonzero;*/
+      /*fill-rule: evenodd;*/
+      stroke-dasharray: 160;
+      stroke-dashoffset: 160;
+
+    }
+    @keyframes load {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .circle > svg > #one {
+      animation: load 5s linear 0s 1;
+      animation-fill-mode: forwards;
+    }
+    .circle > svg > #two {
+      animation: load 5s linear 5s 1;
+      animation-fill-mode: forwards;
+    }
+    .circle > svg > #three {
+      animation: load 5s linear 10s 1;
+      animation-fill-mode: forwards;
+    }
+
+
+    .text > svg {
+      background-color: rgb(250,250,250);
+    }
+    .text > svg > text {
+      font-size: 16px;
+    }
+
+    .line > svg {
+      background-color: rgb(250,250,250);
+    }
+    .line > svg path{
+      stroke-width: 5px;
+      stroke: red;
+      stroke-dasharray:20;
+
+    }
+
+    svg {
+      background-color: rgb(250,250,250);
+    }
+
+    .demo1 > svg > rect{
+      fill: url(#g1);
+    }
+
+    .con {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background-color: rgb(250,250,250);
+      margin: 10px auto;
+    }
+    .demo2 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background-color: deeppink;
+      -webkit-clip-path: circle(100px at 100px 100px);
+    }
+    .demo-svg {
+      width: 0;
+      height: 0;
+    }
+
+    .demo3 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      -webkit-clip-path: polygon(33% 0%, 66% 0%, 100% 50%, 66% 100%, 33% 100%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+      clip-path: polygon(33% 0%, 66% 0%, 100% 50%, 66% 100%, 33% 100%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+      background-color: red;
+      transition: all .5s ease-in-out;
+    }
+    .demo3:hover {
+      background-color: aquamarine;
+      	-webkit-clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+      	clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+    }
+
+    .ai {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .demo4 {
+      background-color: red;
+      -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%);
+    	animation:polygon-ani 7s linear infinite;
+    	-webkit-animation:polygon-ani 7s linear infinite;
+    }
+    @keyframes polygon-ani{
+      10%{
+        background-color: darkorange;
+        -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+      }
+      14%{
+        -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%, 0% 50%);
+      }
+      24%{
+        background-color: lemonchiffon;
+        -webkit-clip-path: polygon(100% 38%, 82% 100%, 82% 100%, 18% 100%, 0% 38%, 0% 38%, 0% 38%, 0% 38%, 50% 0%);
+        clip-path: polygon(100% 38%, 82% 100%, 82% 100%, 18% 100%, 0% 38%, 0% 38%, 0% 38%, 0% 38%, 50% 0%);
+      }
+      28%{
+        -webkit-clip-path: polygon(100% 38%, 82% 100%, 82% 100%, 18% 100%, 0% 38%, 0% 38%, 0% 38%, 0% 38%, 50% 0%);
+        clip-path: polygon(100% 38%, 82% 100%, 82% 100%, 18% 100%, 0% 38%, 0% 38%, 0% 38%, 0% 38%, 50% 0%);
+      }
+      38%{
+        background-color: darkturquoise;
+        -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%,100% 75%, 50% 100%, 0% 75%, 0% 75%, 0% 25%, 0% 25%);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%,100% 75%, 50% 100%, 0% 75%, 0% 75%, 0% 25%, 0% 25%);
+      }
+      42%{
+        -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%,100% 75%, 50% 100%, 0% 75%, 0% 75%, 0% 25%, 0% 25%);
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%,100% 75%, 50% 100%, 0% 75%, 0% 75%, 0% 25%, 0% 25%);
+      }
+      52%{
+        background-color: darkcyan;
+        -webkit-clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 25% 100%, 0% 60%, 10% 20%, 50% 0%);
+        clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 25% 100%, 0% 60%, 10% 20%, 50% 0%);
+      }
+      56%{
+        -webkit-clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 25% 100%, 0% 60%, 10% 20%, 50% 0%);
+        clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 25% 100%, 0% 60%, 10% 20%, 50% 0%);
+      }
+      66%{
+        background-color: deepskyblue;
+        -webkit-clip-path: polygon(30% 0%, 70% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        clip-path: polygon(30% 0%, 70% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      }
+      70%{
+        -webkit-clip-path: polygon(30% 0%, 70% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        clip-path: polygon(30% 0%, 70% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      }
+      80%{
+        background-color: indigo;
+        -webkit-clip-path: polygon(83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%, 50% 0%);
+        clip-path: polygon(83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%, 50% 0%);
+      }
+      84%{
+        -webkit-clip-path: polygon(83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%, 50% 0%);
+        clip-path: polygon(83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%, 50% 0%);
+      }94%{
+        background-color: crimson;
+        -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%);
+      }
+    }
+
+    .demo5 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .demo5 >div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .a {
+      background: rgb(200,23,123);
+      clip-path: polygon(4% 50%,24% 50%,14% 40%);
+      -webkit-clip-path: polygon(4% 50%,24% 50%,14% 40%);
+      animation: a 2s infinite;
+      -webkit-animation: a 2s infinite;
+    }
+    .b {
+      background: rgb(100,23,123);
+      clip-path: polygon(28% 50%,48% 50%,38% 40%);
+      -webkit-clip-path: polygon(28% 50%,48% 50%,38% 40%);
+      animation: b 2s infinite;
+      -webkit-animation: b 2s infinite;
+    }
+    .c {
+      background: rgb(200,123,123);
+      clip-path: polygon(52% 50%,72% 50%,62% 40%);
+      -webkit-clip-path: polygon(52% 50%,72% 50%,62% 40%);
+      animation: c 2s infinite;
+      -webkit-animation: c 2s infinite;
+    }
+    .d {
+      background: rgb(20,23,123);
+      clip-path: polygon(76% 50%,96% 50%,86% 40%);
+      -webkit-clip-path: polygon(76% 50%,96% 50%,86% 40%);
+      animation: d 2s infinite;
+      -webkit-animation: d 2s infinite;
+    }
+
+    @-webkit-keyframes a {
+      50% {
+        background-color: deeppink;
+        clip-path: polygon(40% 40%,60% 40%,50% 50%);
+        -webkit-clip-path: polygon(40% 40%,60% 40%,50% 50%);
+      }
+    }
+    @-webkit-keyframes b {
+      50% {
+        background-color: deeppink;
+        clip-path: polygon(40% 40%,40% 60%,50% 50%);
+        -webkit-clip-path: polygon(40% 40%,40% 60%,50% 50%);
+      }
+    }
+    @-webkit-keyframes c {
+      50% {
+        background-color: deeppink;
+        clip-path: polygon(60% 40%,60% 60%,50% 50%);
+        -webkit-clip-path: polygon(60% 40%,60% 60%,50% 50%);
+      }
+    }
+    @-webkit-keyframes d {
+      50% {
+        background-color: deeppink;
+        clip-path: polygon(40% 60%,60% 60%,50% 50%);
+        -webkit-clip-path: polygon(40% 60%,60% 60%,50% 50%);
+      }
+
+    }
+
+    #filter-text{
+        font-family:Raleway, Verdana, sans-serif, 微軟正黑體, 微软雅黑, serif, 'Droid Serif', 'Helvetica Neue', Helvetica, Arial;
+        font-size:32px;
+    }
+
+    .demo6 {
+      background-color: red;
+      -webkit-clip-path: inset(0 0 0 0 round 0 25% 0 25%);
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <!-- <div class="line-animation">
+    <svg class="l1" width="200px" height="200px">
+      <path d="M100,0L200 100L100 200L0 100Z"></path>
+    </svg>
+  </div>
+  <div class="circle">
+    <svg width="200px" height="200px">
+      <path id="one" d="M20,20 L180,20"></path>
+      <path id="two" d="M100, 20 L100,180"></path>
+      <path id="three" d="M20,180 L180,180"></path>
+    </svg>
+  </div>
+  <div class="text">
+    <svg width="200px" height="200px">
+      <defs>
+        <path id="path1" d="M100,0 L100,200"></path>
+      </defs>
+      <text x="0" y="0">
+        <textPath xlink:href="#path1">i love svgi love svg</textPath>
+      </text>
+    </svg>
+  </div>
+
+  <div class="line">
+    <svg width="500px" height="200px">
+      <path d="M10,100 L480,100"></path>
+    </svg>
+  </div>
+
+  <div class="demo1">
+    <svg width="200px" height="200px">
+      <defs>
+        <linearGradient id="l1" x1="0" y1="0" x2="100%" y2="100%">
+          <stop offset="0" style="stop-color:red;stop-opacity:1;"></stop>
+          <stop offset="50%" style="stop-color:blue;stop-opacity:1;"></stop>
+          <stop offset="100%" style="stop-color:yellow;stop-opacity:1;"></stop>
+        </linearGradient>
+
+        <radialGradient id="g1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0" style="stop-color:red;stop-opacity:1;"></stop>
+          <stop offset="100%" style="stop-color:yellow;stop-opacity:1;"></stop>
+        </radialGradient>
+      </defs>
+      <rect x="20" y="20" width="100px" height='100px'></rect>
+    </svg>
+  </div> -->
+
+  <div class="con">
+    <div class="demo2">
+
+    </div>
+  </div>
+  <div class="con">
+    <div class="demo3">
+
+    </div>
+  </div>
+  <div class="con">
+    <div class="ai demo4">
+
+    </div>
+  </div>
+
+  <div class="con">
+    <div class="demo5">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+      <div class="d"></div>
+    </div>
+  </div>
+
+  <!--  svg 绘制动画 -->
+
+  <!-- 文字阴影  -->
+  <div class="con">
+    <svg width="400" height="400">
+      <defs>
+        <linearGradient id="line1" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="white" stop-opacity="0" />
+          <stop offset="1" stop-color="white" stop-opacity="1" />
+        </linearGradient>
+
+        <mask id="mask1" maskUnits="userSpaceOnUse" x='0' y="0" width="400" height="400">
+          <rect x="0" y="0" width="400" height="400" fill="url(#line1)"></rect>
+        </mask>
+
+        <text id="t1" x="10" y="200" font-size="50" text-anchor="left">
+          Masked Text
+        </text>
+      </defs>
+      <use x="0" y="0" width="400" height="400" fill='red' xlink:href="#t1" mask="url(#mask1)"></use>
+    </svg>
+  </div>
+
+  <div class="con">
+    <div class="ai demo6">
+
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+
+
+    //SVG 可以通过<embed> <object> <iframe> 嵌入html
+    //推荐使用embed 各浏览器支持，HTML4和XHTML中有点问题  HTML5可以
+    // <embed src="circle.svg" type="image/svg+xml"/>
+    /*
+      --------------
+        公共的属性
+      --------------
+      fill: 填充的颜色 也可以url(id)这里主要是渐进色
+      stroke: 线条的颜色
+      stroke-width: 线条的宽度
+      stroke-linecap: 线条末端的处理 butt round square(会影响stroke-dasharray)
+      opacity: 不透明度
+      fill-rule: (nonzero) (evenodd) 非零环绕原则
+      stroke-dasharray: 创建虚线  x,y,z..... 长度,间隔,长度,间隔,....
+      strike-dashoffset: 偏移
+      filter: url(id) 滤镜
+    */
+
+    /*
+      -------------
+        常用
+      -------------
+
+      <defs></defs> 中放入引用的元素
+      <use x="" y="" width="" height="" xlink:href="id"></use>
+      x: 克隆对象左上角的x轴
+      y: 克隆对象左上角的y轴
+      width: 克隆元素的宽度
+      height: 克隆元素的高度
+      xlink:href: URI引用克隆元素
+
+      <pattern id="" width="" height="" patternUnits="" patternTransform="">
+        每个单元中存放的图形
+      </pattern>
+      patternUnits:定义pattern的坐标系统 userSpaceOnUse(不会对pattern的单位进行缩放) | objectBoundingBox(会)
+      patternTransform: 变换
+
+      <mask maskUnits="" x="" y="" width="" height="">
+        内容
+      </mask>
+      maskUnits: 第一mask的坐标系统  userSpaceOnUse(不会对pattern的单位进行缩放) | objectBoundingBox(会)  userSpaceOnUse | objectBoundingBox
+      x: 裁剪的横坐标
+      y: 裁剪的纵坐标
+      width: 裁剪的宽度
+      height: 裁剪的高度
+    */
+
+    /*
+      --------------
+        绘制矩形
+      --------------
+      <rect x='' y='' rx='' ry='' width='' height=''></rect>
+      x: 左上角横坐标
+      y: 右上角纵坐标
+      width: 矩形的宽度
+      height: 矩形的高度
+      rx: 横坐标半径
+      ry: 纵坐标半径
+    */
+
+    /*
+      ----------------
+        绘制圆形
+      ----------------
+      <circle cx="" cy="" r=""></circle>
+      cx: 圆心横坐标
+      cy: 圆心纵坐标
+      r: 半径
+    */
+
+    /*
+      ------------
+        绘制椭圆
+      ------------
+      <ellipse cx='' cy='' rx='' ry=''></ellipse>
+      cx: 圆心横坐标
+      cy: 圆心纵坐标
+      rx: 横半轴
+      ry: 纵半轴
+    */
+
+    /*
+      ---------------
+        绘制线条
+      ---------------
+      <line x1="" y1="" x2="" y2=""></line>
+      x1: 起始点横坐标
+      y1: 起始点纵坐标
+      x2: 结束点横坐标
+      y2: 结束点纵坐标
+
+    */
+
+
+    /*
+      -----------------
+        绘制多边形
+      -----------------
+      <polygon points="x,y x1,y1 ......"></polygon>
+      points: 坐标的集合
+
+    */
+    /*
+      ----------------
+        绘制曲线
+      ----------------
+      <polyline points="x,y x1,y1 ....."></polyline>
+      points: 坐标的集合
+    */
+
+    /*
+      ---------------
+        绘制路径
+      ---------------
+      <path d=""></path>
+      d: 路径的描述
+      主要的语法：
+      M： moveTo
+      L: lineTo
+      H: horizontal lineTo
+      V: vertical lineTo
+      C: curveto
+      S: smooth curveto
+      Q: quadratic Bézier curve
+      T: smooth quadratic Bézier curveto
+      A: elliptical Arc
+      Z: closepath
+
+      命令区分大小写，除了Z。大写表示绝对位置，小写表示相对位置。
+
+    */
+
+
+    /*
+      ---------------
+        绘制文本
+      ---------------
+      <text x="" y="" text-anchor="" dx="" dy="">text</text>
+      x: 横坐标
+      y: 纵坐标
+      text-anchor: start middle end 文本锚点(可能会和我们预期的坐标有出入)
+      dx: 横轴的偏移
+      dy: 纵轴的偏移
+
+      路径文本的绘制
+      <textPath xlink:href="#path">text</textPath>
+
+      <text>中还可以嵌套<tspan x="" y="">text</tspan>
+
+      同时文本也可以作为超链接
+      <a xlink:href="" target="">
+        <text></text>
+      </a>
+    */
+
+
+    /*
+      -----------------
+        滤镜
+      -----------------
+      <filter id=""></filter>
+      系统提供很多滤镜
+      (https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter)
+    */
+
+    /*
+      --------------
+        渐变
+      --------------
+      线性渐变
+      <linearGradient x1="" y1="" x2="" y2="" gradientUnits>
+        <stop offset="" style="stop-color:;stop-opacity:;"></stop>
+      </linearGradient>
+      gradientUnits: 定义坐标 userSpaceOnUse(不会对pattern的单位进行缩放) | objectBoundingBox(会)
+      x1: 渐变开始横坐标
+      y1: 渐变开始纵坐标
+      x2: 渐变结束横坐标
+      y2: 渐变结束纵坐标
+      offset: 渐变开始的位置 0% - 100%
+
+      放射性渐变
+      <radialGradient cx="" cy="" r="" fx="" fy="" gradientUnits>
+        <stop offset="" style="stop-color:;stop-opacity:;"></stop>
+      </radialGradient>
+      gradientUnits: 定义坐标 userSpaceOnUse(不会对pattern的单位进行缩放) | objectBoundingBox(会)
+      cx: 外层圆心横坐标
+      cy: 外层圆心纵坐标
+      fx: 内层圆心横坐标
+      fy: 内层圆心纵坐标
+      r: 发散的半径
+      offset: 渐变开始的位置 0% - 100%
+    */
+
+    /*
+      ----------------------------------
+        CSS3中的 SVG clip-path与polygon
+      ----------------------------------
+      -webkit-浏览器实现的比较的好
+      -webkit-clip-path:
+      circle(r at x1 x2) 可以写成 circle(50% at 50% 50%);
+
+    */
+
+    /*
+      svg polygon过渡动画 必须确保点的个数相等
+    */
+
+
+
+
+
+
+  </script>
+</body>
+</html>
