@@ -1,17 +1,17 @@
 ###CSS选择器
 
 ####CSS1中的选择器
-1、类型选择器   E
-2、ID选择器   #id
-3、类选择器    .class
-4、包含选择器   E F
-5、伪类选择器   :link
-6、伪类选择器   :visited
-7、伪类选择器   :active
-8、伪类选择器   :hover
-9、伪类选择器   :focus
-10、伪元素选择器   ::first-line元素的第一行文本
-11、伪元素选择器   ::first-letter元素文本中的第一个字符
+    1、类型选择器   E
+    2、ID选择器   #id
+    3、类选择器    .class
+    4、包含选择器   E F
+    5、伪类选择器   :link
+    6、伪类选择器   :visited
+    7、伪类选择器   :active
+    8、伪类选择器   :hover
+    9、伪类选择器   :focus
+    10、伪元素选择器   ::first-line元素的第一行文本
+    11、伪元素选择器   ::first-letter元素文本中的第一个字符
 
 ####CSS2中的选择器
 1、通配选择器   *
