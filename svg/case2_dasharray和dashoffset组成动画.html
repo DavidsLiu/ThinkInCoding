@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="daiqingyun">
+  <title>svg路径动画</title>
+  <style>
+    .con {
+      position: relative;
+      width: 400px;
+      height: 100px;
+      margin: 50px auto;
+      cursor: pointer;
+    }
+    .con > span {
+      font-size: 24px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%,-50%,0);
+    }
+    .rect {
+      fill: none;
+      stroke: blue;
+      stroke-width: 4;
+      stroke-dasharray: 400 800;
+      stroke-dashoffset: -500;
+      transition: all 1s ease-in-out;
+    }
+
+    .con:hover span {
+      transition: all .5s ease-in-out;
+      color: deeppink;
+    }
+
+    .con:hover .rect{
+      animation: HOVER 0.5s linear forwards;
+    }
+
+    @keyframes HOVER {
+      0% {
+        stroke: blue;
+        stroke-width: 4;
+        stroke-dasharray: 400 800;
+        stroke-dashoffset: -500;
+      }
+      100% {
+        stroke: deeppink;
+        stroke-width: 2;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="con">
+    <svg width="400" height='100'>
+      <rect class="rect" x="0" y="0" width="400" height="100"></rect>
+    </svg>
+    <span>Hover Me</span>
+  </div>
+
+  <script type="text/javascript">
+    /*
+      http://www.zhangxinxu.com/wordpress/2014/08/so-powerful-svg-smil-animation/
+    */
+  </script>
+</body>
+</html>

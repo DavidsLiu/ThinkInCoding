@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="daiqingyun">
+  <title>选择器</title>
+  <style media="screen">
+    .con {
+      position: relative;
+      width: 800px;
+      margin: 40px auto;
+    }
+
+    table {
+      width: 100%;
+      font-size: 14px;
+      table-layout: auto;
+      empty-cells: hide;
+      border-collapse: collapse;
+      margin: 0 auto;
+      border: 1px solid rgb(213,213,213);
+      color: #666;
+    }
+    th {
+      height: 30px;
+      line-height: 30px;
+      text-align: left;
+      text-indent: 2em;
+      background-color: rgb(250,250,250);
+    }
+    td {
+      height: 25px;
+      text-indent: 2em;
+      border: 1px solid rgb(213,213,213);
+    }
+    tr:nth-child(even) {
+      background-color: rgb(252,252,252);
+    }
+    /*#test {
+      background-color: blue;
+    }
+    .some {
+      background-color: yellow;
+    }*/
+    p {
+      background-color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="con">
+    <table>
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>得分</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>小明</td>
+          <td>21</td>
+          <td>男</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>小文</td>
+          <td>22</td>
+          <td>男</td>
+          <td>200</td>
+        </tr>
+        <tr>
+          <td>小东</td>
+          <td>22</td>
+          <td>男</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>小红</td>
+          <td>22</td>
+          <td>女</td>
+          <td>222</td>
+        </tr>
+        <tr>
+          <td>校花</td>
+          <td>10</td>
+          <td>女</td>
+          <td>2000</td>
+        </tr>
+        <tr>
+          <td>小点声</td>
+          <td>22</td>
+          <td>男</td>
+          <td>2323</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="con">
+    <p class="some" id="test">啊哈哈哈</p>
+  </div>
+</body>
+</html>

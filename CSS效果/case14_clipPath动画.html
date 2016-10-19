@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>clipPath</title>
+  <style media="screen">
+    .con {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background-color: rgb(250,250,250);
+      margin: 20px auto;
+    }
+    .con > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+    }
+    .a {
+      clip-path: polygon(20px 200px,80px 200px,50px 140px);
+      -webkit-clip-path: polygon(20px 200px,80px 200px,50px 140px);
+      background-color: rgb(23,222,123);
+      animation: aAnimation 2s linear infinite alternate;
+
+    }
+    .b {
+      clip-path: polygon(120px 140px,180px 140px,150px 200px);
+      -webkit-clip-path: polygon(120px 140px,180px 140px,150px 200px);
+      background-color: rgb(223,222,123);
+      animation: bAnimation 2s linear infinite alternate;
+    }
+    .c {
+      clip-path: polygon(220px 200px,280px 200px,250px 140px);
+      -webkit-clip-path: polygon(220px 200px,280px 200px,250px 140px);
+      background-color: rgb(223,22,123);
+      animation: cAnimation 2s linear infinite alternate;
+    }
+    .d {
+      clip-path: polygon(320px 140px,380px 140px,350px 200px);
+      -webkit-clip-path: polygon(320px 140px,380px 140px,350px 200px);
+      background-color: rgb(223,22,3);
+      animation: dAnimation 2s linear infinite alternate;
+    }
+
+    @keyframes aAnimation {
+      0%,10% {
+        clip-path: polygon(20px 200px,80px 200px,50px 140px);
+        -webkit-clip-path: polygon(20px 200px,80px 200px,50px 140px);
+        background-color: rgb(23,222,123);
+      }
+      90%,100% {
+        clip-path: polygon(100px 100px,100px 300px,200px 200px);
+        -webkit-clip-path: polygon(100px 100px,100px 300px,200px 200px);
+        background-color: rgb(2,224,223);
+      }
+    }
+    @keyframes bAnimation {
+      0%,10% {
+        clip-path: polygon(120px 140px,180px 140px,150px 200px);
+        -webkit-clip-path: polygon(120px 140px,180px 140px,150px 200px);
+        background-color: rgb(223,222,123);
+      }
+      90%,100% {
+        clip-path: polygon(100px 100px,300px 100px,200px 200px);
+        -webkit-clip-path: polygon(100px 100px,300px 100px,200px 200px);
+        background-color: rgb(2,224,223);
+      }
+    }
+    @keyframes cAnimation {
+      0%,10% {
+        clip-path: polygon(220px 200px,280px 200px,250px 140px);
+        -webkit-clip-path: polygon(220px 200px,280px 200px,250px 140px);
+        background-color: rgb(223,22,123);
+      }
+      90%,100% {
+        clip-path: polygon(300px 300px,100px 300px,200px 200px);
+        -webkit-clip-path: polygon(300px 300px,100px 300px,200px 200px);
+        background-color: rgb(2,224,223);
+      }
+    }
+    @keyframes dAnimation {
+      0%,10% {
+        clip-path: polygon(320px 140px,380px 140px,350px 200px);
+        -webkit-clip-path: polygon(320px 140px,380px 140px,350px 200px);
+        background-color: rgb(223,22,3);
+      }
+      90%,100% {
+        clip-path: polygon(300px 100px,300px 300px,200px 200px);
+        -webkit-clip-path: polygon(300px 100px,300px 300px,200px 200px);
+        background-color: rgb(2,224,223);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="con">
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+    <div class="d"></div>
+  </div>
+  <script type="text/javascript">
+    //注意的点 运动过程中 clipPath中的polygon的点的个数保持不变。
+  </script>
+</body>
+</html>

@@ -11,7 +11,7 @@
   阴影颜色
 ```
   下面是效果图：
-  
+
 <center>![image](http://o8sux93eg.bkt.clouddn.com/cssTextShadow.png)</center>
 
 
