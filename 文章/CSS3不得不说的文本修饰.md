@@ -8,4 +8,6 @@
 5、font: 复合属性
 5、color：
 6、word-spacing: 词间距
-7、letter-spacing
+7、letter-spacing: 字符间距
+8、text-decoration: none | underline | overline | line-through
+9、
