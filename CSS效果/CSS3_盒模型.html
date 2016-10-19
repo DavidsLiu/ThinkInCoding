@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>盒模型</title>
+    <style media="screen">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        div {
+            font-size: 30px;
+            color: #fff;
+            box-align: center;
+            box-pack: center;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+        }
+        h3 {
+            text-align: center;
+            margin: 30px auto;
+        }
+        .demo {
+            position: relative;
+            width: 1000px;
+            margin: 20px auto;
+            border: 1px solid rgb(213,213,213);
+            display: box;
+            display: -webkit-box;
+            box-direction: reverse;
+            -webkit-box-direction: reverse;
+        }
+        .demo > div {
+            display: box;
+            display: -webkit-box;
+
+        }
+        .a {
+            box-flex: 1;
+            -webkit-box-flex: 1;
+            background-color: pink;
+            height: 400px;
+        }
+        .b {
+            box-flex: 2;
+            -webkit-box-flex: 2;
+            background-color: red;
+            height: 200px;
+        }
+        .c {
+            box-flex: 1;
+            -webkit-box-flex: 1;
+            background-color: rgb(23,2,123);
+            height: 600px;
+
+        }
+
+        #box {
+            display: box;
+            display: -webkit-box;
+
+            box-orient: vertical;
+            -webkit-box-orient: vertical;
+
+        }
+
+        #box1 {
+            display: box;
+            display: -webkit-box;
+            width: 1000px;
+            height: 200px;
+            background-color: rgb(2,111,222);
+            margin: 20px auto;
+
+            box-ordinal-group: 3;
+            -webkit-box-ordinal-group: 3;
+        }
+
+        #box2 {
+            display: box;
+            display: -webkit-box;
+            width: 1000px;
+            height: 200px;
+            background-color: rgb(222,22,111);
+            margin: 20px auto;
+
+            box-ordinal-group: 2;
+            -webkit-box-ordinal-group: 2;
+        }
+
+        #box3 {
+            display: box;
+            display: -webkit-box;
+            width: 1000px;
+            height: 200px;
+            background-color: rgb(222,111,222);
+            margin: 20px auto;
+
+            box-ordinal-group: 1;
+            -webkit-box-ordinal-group: 1;
+        }
+
+        .temp1 {
+            position: relative;
+            width: 1000px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: rgb(250,250,250);
+            border: 10px solid transparent;
+            border-image: url(img/border.png) 30 30 round;
+        }
+
+        .temp2 {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: rgb(250,250,250);
+            border: 10px solid red;
+            border-radius: 150px 150px 150px 150px / 150px 150px 150px 150px;
+
+        }
+
+        .temp3 {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 60px auto;
+            background-color: rgb(250,250,250);
+            box-shadow: 10px 10px 5px  rgb(213,213,213);
+        }
+
+        .temp4 {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 60px auto;
+            background-color: rgb(250,250,250);
+
+            box-shadow: 10px 10px 5px pink inset,-10px -10px 5px pink inset;
+        }
+
+
+        .demo5 {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            margin: 60px auto;
+            background-color: rgb(250,250,250);
+            background-image: url(img/xienan4.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .demo6 {
+            position: relative;
+            width: 600px;
+            height: 500px;
+            margin: 60px auto;
+            background-color: rgb(250,250,250);
+            transition: all .3s ease-in-out;
+            outline: transparent solid 5px;
+        }
+        .demo6:hover {
+            outline: pink solid 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h3>弹性布局</h3>
+    <div class="demo">
+        <div class="a">A</div>
+        <div class="b">B</div>
+        <div class="c">C</div>
+    </div>
+
+    <h3>盒子的顺序</h3>
+
+    <div id="box">
+        <div id="box1">1</div>
+        <div id="box2">2</div>
+        <div id="box3">3</div>
+    </div>
+
+    <h3> border-image</h3>
+    <div class="temp1"></div>
+
+
+    <h3>border-radius</h3>
+    <div class="temp2"></div>
+
+    <h3>box-shadow</h3>
+
+    <div class="temp3">
+
+    </div>
+
+    <div class="temp4"></div>
+
+
+
+    <h3>background-size和background-position</h3>
+
+    <div class="demo5">
+
+    </div>
+
+
+
+    <h3>outline</h3>
+    <div class="demo6">
+
+    </div>
+
+
+</body>
+</html>
