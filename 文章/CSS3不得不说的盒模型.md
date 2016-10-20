@@ -143,6 +143,19 @@
 ```
     ------------------
       margin-collapse
-    ------------------  
+    ------------------
+    什么叫margin-collapse，其实在table中有个叫border-collapse的，差不多的意思，看一下具体的情况:
+
+    1、发生在上下相邻的两个div的上下外边距：
+    通常我们认为它们的外边距是a+b,但是由于发生margin-collapse导致得到的是max(a,b);
+    对于这种情况最好是只设定单一的下边距或者上边距。
+
+    2、发生在父子元素的上边距：
+    子元素的margin-top不会生效，但是父元素的margin-top为max(a,b);
+    解决方法：
+    (1)父类设置border
+    (2)父类设置padding
+    (3)父类设置overflow:hidden;
+    (4)父类设置为inline-block;
 
 ```
