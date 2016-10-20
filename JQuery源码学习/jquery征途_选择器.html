@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择器</title>
+    <style media="screen">
+
+    </style>
+</head>
+<body>
+
+    <div class="demo">
+        <p>0</p>
+        <p class="p1">1</p>
+        <p>2</p>
+        <p>3</p>
+        <div>
+            <p>11</p>
+            <p>22</p>
+            <p>33</p>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="JQuery.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            /*
+                警告：对于id应该是唯一的，但是就算你不是唯一的 ，用css改变样式 依然会查找所有的。这点我们一定要符合规范。
+                兼容性
+                选择器容错功能（原生js会报错）动态dom
+                返回的是一个对象，不是数组 。
+                a标签不会继承父类颜色 ，默认的优先级高
+                不要在全局使用*
+                .classname.classname 多个类名限定
+                选择器越复杂，字符串解析越慢
+            */
+
+            /*
+                属性  length
+
+            */
+            //群组选择器 ,
+            //后代选择器 ul li
+            //儿子选择器 ul > li jquery  .children()
+
+            //p + p :同级的后一个必须满足是p  next("") 如果是空的话就是通配符
+            //p ~ p : 同级后面所有的。nextAll("") 如果是空的话就是通配符
+
+            // jquery  prev("") 前面所有的
+            // prevAll 前面所有的
+
+            //前后所有的  siblings('')
+
+            // nextUntil("")  prevUntil('')
+
+
+            // =等于 !=不等于 ^=以什么开头 $=以什么结尾 ~=以空格间隔的值列表 *=含有子串  title[][][]多个条件限定
+
+            //:first
+            //:last
+            //:not()
+            //:even 从0开始
+            //:odd
+            //:eq()  0 1 2   -2 -1
+            //:gt() >
+            //:lt() <
+            //:header h1 - h6
+            //:focus
+
+
+            //first()
+            //last()
+            //eq()
+            //not()
+
+            //:contains(text)
+            //:empty
+            //:has() 选择父类中含有该元素的父类！！！
+            //:parent 含有子元素的
+
+            //parent()找到父元素
+            //parents() 找到祖先元素
+            // parentsUntil()
+
+            //:hidden
+            //:visible
+
+
+
+
+
+
+
+
+        });
+    </script>
+</body>
+</html>
