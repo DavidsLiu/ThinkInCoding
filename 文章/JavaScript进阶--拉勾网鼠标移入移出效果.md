@@ -20,8 +20,8 @@
         .....
     </ul>
 
-    li做为鼠标移入(mouseenter)和鼠标移出(mouseleave)的载体。
-    div做为动画执行的载体。
+    li作为鼠标移入(mouseenter)和鼠标移出(mouseleave)的载体。
+    div作为动画执行的载体。
 
     ------------
       CSS
@@ -103,7 +103,7 @@
 ```
 
 ####如何确定方向
-  这里要用到数学中的正切相关的概念，我自己画了一张图，不知道你们能不能看特明白：
+  这里要用到数学中的正切相关的概念，我自己画了一张图，不知道你们能不能看特明白：(奇丑。。。)
 <center>![image](http://o8sux93eg.bkt.clouddn.com/lg_self.png)</center>
 
 ```
