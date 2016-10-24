@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="daiqingyun">
+    <title>mouse event</title>
+    <style media="screen">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        ul {
+            list-style: none;
+            position: relative;
+            margin: 50px 300px;
+            font-size: 0;
+        }
+        ul > li {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(213,213,213);
+            display: inline-block;
+            margin: 10px;
+            overflow: hidden;
+
+        }
+        ul > li .bg {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: -100%;
+            top: 0;
+            background-color: rgb(212,23,222);
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+        }
+        .bg > p {
+            color: #fff;
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <div class="bg">
+                <p>JS</p>
+            </div>
+        </li>
+        <li>
+            <div class="bg">
+                <p>CSS3</p>
+            </div>
+        </li>
+        <li>
+            <div class="bg">
+                <p>HTML5</p>
+            </div>
+        </li>
+        <li>
+            <div class="bg">
+                <p>Web</p>
+            </div>
+        </li>
+        <li>
+            <div class="bg">
+                <p>Object</p>
+            </div>
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+
+        /*
+            options中的参数:
+            触发事件的载体: targetElement
+            执行动画的载体: animationElement
+        */
+
+        function HoverAction(options) {
+            if(!options.targetElement || !options.animationElement) {
+                return false;
+            }
+
+            this.targetElement = options.targetElement;
+            this.animationElement = options.animationElement;
+            this.timeId = null;
+            this.speed = "0.3s";
+
+        }
+
+        HoverAction.prototype.addEvent = function() {
+            var _this = this;
+            _this.targetElement.addEventListener('mouseenter',function(e){
+                //得到鼠标的坐标
+                var point = {
+                    x: e.pageX,
+                    y: e.pageY
+                }
+
+                //获得方向
+                var dir = getDirection(_this.targetElement,getOffset(_this.targetElement),point);
+                clearTimeout(_this.timeId);
+                //取消过渡动画
+                _this.animationElement.style.transition = "";
+                //得到运动的方向，要确定动画开始的点
+                switch(dir){
+                    case 1:
+                        _this.animationElement.style.top = "-100%";
+                        _this.animationElement.style.left = "0";
+                        break;
+                    case 2:
+                        _this.animationElement.style.top = "100%";
+                        _this.animationElement.style.left = "0";
+                        break;
+                    case 3:
+                        _this.animationElement.style.top = "0";
+                        _this.animationElement.style.left = "-100%";
+                        break;
+                    case 4:
+                        _this.animationElement.style.top = "0";
+                        _this.animationElement.style.left = "100%";
+                        break;
+                }
+
+                _this.timeId = setTimeout(function(){
+                    jsToCSS({
+                        obj: _this.animationElement,
+                        speed: _this.speed,
+                        changeStyle: function(){
+                            this.style.top = "0";
+                            this.style.left = "0";
+                        }
+                    });
+                },20);
+            },false);
+
+            _this.targetElement.addEventListener('mouseleave',function(e){
+                var left,top;
+                //得到鼠标坐标
+                var point = {
+                    x: e.pageX,
+                    y: e.pageY
+                }
+                clearTimeout(_this.timeId);
+                _this.animationElement.style.transition = "";
+                var dir = getDirection(_this.targetElement,getOffset(_this.targetElement),point);
+                switch(dir) {
+                    case 1:
+                        top = '-100%';
+                        left = '0';
+                        break;
+                    case 2:
+                        top = '100%';
+                        left = "0";
+                        break;
+                    case 3:
+                        left = "-100%";
+                        top = "0";
+                        break;
+                    case 4:
+                        left = "100%";
+                        top = "0";
+                        break;
+                }
+
+                _this.timeId = setTimeout(function(){
+                    jsToCSS({
+                        obj: _this.animationElement,
+                        speed: _this.speed,
+                        changeStyle: function(){
+                            this.style.top = top;
+                            this.style.left = left;
+                        }
+                    });
+                },20);
+            },false);
+
+        }
+
+        //简单的封装一下CSS3动画
+        /*
+            options:
+            obj: 运动的对象,
+            speed: 运动的时间, []
+            changeStyle: 运动中改变哪些属性，[]
+            callback: 运动结束后的回调 []
+        */
+        function jsToCSS(options) {
+            if(!options.obj) {
+                return false;
+            }
+            options.speed = options.speed || '0.5s';
+            options.obj.style.transition = "all " + options.speed + " ease-in-out";
+
+            options.changeStyle.call(options.obj);
+
+            var flag = false;
+
+            options.obj.addEventListener('transitionend',function(){
+                //这里主要是transitionend对于每个属性运动完多会走一遍
+                if(!flag) {
+                    options.callback && options.callback();
+                    flag = true;
+                }
+            },false);
+        }
+
+        //获取一个元素的偏移量
+        function getOffset(element){
+            var top = 0,left = 0;
+            while(element!=null) {
+                top += element.offsetTop;
+                left += element.offsetLeft;
+                element = element.offsetParent
+            }
+            return {
+                top: top,
+                left: left
+            }
+        }
+        //得到元素运动的方向
+        function getDirection(element,offset,pagePoint){
+            var halfWidth = element.offsetWidth / 2;
+            var halfHeight = element.offsetHeight / 2;
+            //得到中心点
+            var center = {
+                x: offset.left + halfWidth,
+                y: offset.top + halfHeight
+            }
+
+            //得到鼠标偏离中心点的距离
+            var disX = pagePoint.x - center.x;
+            var disY = pagePoint.y - center.y;
+
+            if(disY < 0 && Math.abs(disY / disX) >= 1) {
+                //上方
+                return 1;
+            }
+            else if(disY > 0 && Math.abs(disY / disX) >= 1) {
+                //下
+                return 2;
+            }
+            else if(disX < 0 && Math.abs(disY / disX) < 1) {
+                //左
+                return 3;
+            }
+            else {
+                //右
+                return 4;
+            }
+        }
+
+        var list = document.querySelectorAll('li');
+        var div = document.querySelectorAll('.bg');
+        var len = list.length;
+        for(var i = 0; i < len; i++) {
+            var options = {
+                targetElement: list[i],
+                animationElement: div[i]
+            }
+            var temp = new HoverAction(options);
+            temp.addEvent();
+        }
+        /*
+            clientX 可视区域的坐标
+            x
+
+            pagex  包含滚动条卷出的高度
+
+            screen 在电脑屏幕中的位置
+
+            如何计算元素内的坐标pointTo
+
+            计算元素的偏移量
+
+            获取元素的高度和宽度
+
+            获取元素额中心店坐标
+        */
+
+        // //获取鼠标在某个元素的坐标，参照的坐标系为元素的左上角。
+        // function pointTo(ele,point) {
+        //     var box = ele.getBoundingClientRect();
+        //     return {
+        //         x: point.x - box.left,
+        //         y: point.y - box.top
+        //     };
+        // }
+        // //获取
+        // function getPagePos(event) {
+        //     var e = event || window.event;
+        //     var pageX=event.pageX!=null?event.pageX:(event.clientX+document.documentElement.scrollLeft||document.body.scrollLeft),
+        //         pageY=event.pageY!=null?event.pageY:(event.clientY+document.documentElement.scrollTop||document.body.scrollTop);
+        //     return {
+        //         x:pageX,
+        //         y:pageY
+        //     }
+        // }
+        //
+        // function getPoi(element){
+        //     var top= 0,left=0;
+        //     while(element!=null){
+        //         top+=element.offsetTop;
+        //         left+=element.offsetLeft;
+        //         element=element.offsetParent;
+        //     }
+        //     return {
+        //         top:top,
+        //         left:left
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
