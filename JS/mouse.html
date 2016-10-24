@@ -76,25 +76,23 @@
 
     <script type="text/javascript">
 
+
         /*
             options中的参数:
             触发事件的载体: targetElement
             执行动画的载体: animationElement
         */
-
         function HoverAction(options) {
             if(!options.targetElement || !options.animationElement) {
                 return false;
             }
-
             this.targetElement = options.targetElement;
             this.animationElement = options.animationElement;
             this.timeId = null;
             this.speed = "0.3s";
-
         }
-
         HoverAction.prototype.addEvent = function() {
+            //保存this的指向
             var _this = this;
             _this.targetElement.addEventListener('mouseenter',function(e){
                 //得到鼠标的坐标
@@ -102,13 +100,13 @@
                     x: e.pageX,
                     y: e.pageY
                 }
-
+                console.log(point);
                 //获得方向
-                var dir = getDirection(_this.targetElement,getOffset(_this.targetElement),point);
+                var dir = getDirection(_this.targetElement,startPoint(_this.targetElement),point);
                 clearTimeout(_this.timeId);
-                //取消过渡动画
+                //取消过渡动画(防止重置动画载体位置时触发过渡效果)
                 _this.animationElement.style.transition = "";
-                //得到运动的方向，要确定动画开始的点
+                //得到运动的方向，要确定动画载体的开始位置
                 switch(dir){
                     case 1:
                         _this.animationElement.style.top = "-100%";
@@ -127,9 +125,9 @@
                         _this.animationElement.style.left = "100%";
                         break;
                 }
-
+                //异步执行
                 _this.timeId = setTimeout(function(){
-                    jsToCSS({
+                    animation({
                         obj: _this.animationElement,
                         speed: _this.speed,
                         changeStyle: function(){
@@ -139,17 +137,15 @@
                     });
                 },20);
             },false);
-
             _this.targetElement.addEventListener('mouseleave',function(e){
                 var left,top;
-                //得到鼠标坐标
                 var point = {
                     x: e.pageX,
                     y: e.pageY
                 }
                 clearTimeout(_this.timeId);
                 _this.animationElement.style.transition = "";
-                var dir = getDirection(_this.targetElement,getOffset(_this.targetElement),point);
+                var dir = getDirection(_this.targetElement,startPoint(_this.targetElement),point);
                 switch(dir) {
                     case 1:
                         top = '-100%';
@@ -168,9 +164,8 @@
                         top = "0";
                         break;
                 }
-
                 _this.timeId = setTimeout(function(){
-                    jsToCSS({
+                    animation({
                         obj: _this.animationElement,
                         speed: _this.speed,
                         changeStyle: function(){
@@ -182,16 +177,8 @@
             },false);
 
         }
-
-        //简单的封装一下CSS3动画
-        /*
-            options:
-            obj: 运动的对象,
-            speed: 运动的时间, []
-            changeStyle: 运动中改变哪些属性，[]
-            callback: 运动结束后的回调 []
-        */
-        function jsToCSS(options) {
+        //动画
+        function animation(options) {
             if(!options.obj) {
                 return false;
             }
@@ -210,34 +197,30 @@
                 }
             },false);
         }
-
-        //获取一个元素的偏移量
-        function getOffset(element){
-            var top = 0,left = 0;
+        //获取元素左上角的坐标
+        function startPoint(element){
+            var x = 0,y = 0;
             while(element!=null) {
-                top += element.offsetTop;
-                left += element.offsetLeft;
+                x += element.offsetLeft;
+                y += element.offsetTop;
                 element = element.offsetParent
             }
             return {
-                top: top,
-                left: left
+                x: x,
+                y: y
             }
         }
         //得到元素运动的方向
-        function getDirection(element,offset,pagePoint){
-            var halfWidth = element.offsetWidth / 2;
-            var halfHeight = element.offsetHeight / 2;
+        function getDirection(element,startPoint,pagePoint){
+            var halfWidth = element.offsetWidth / 2,halfHeight = element.offsetHeight / 2;
             //得到中心点
             var center = {
-                x: offset.left + halfWidth,
-                y: offset.top + halfHeight
+                x: startPoint.x + halfWidth,
+                y: startPoint.y + halfHeight
             }
-
             //得到鼠标偏离中心点的距离
             var disX = pagePoint.x - center.x;
             var disY = pagePoint.y - center.y;
-
             if(disY < 0 && Math.abs(disY / disX) >= 1) {
                 //上方
                 return 1;
@@ -267,54 +250,8 @@
             var temp = new HoverAction(options);
             temp.addEvent();
         }
-        /*
-            clientX 可视区域的坐标
-            x
 
-            pagex  包含滚动条卷出的高度
 
-            screen 在电脑屏幕中的位置
-
-            如何计算元素内的坐标pointTo
-
-            计算元素的偏移量
-
-            获取元素的高度和宽度
-
-            获取元素额中心店坐标
-        */
-
-        // //获取鼠标在某个元素的坐标，参照的坐标系为元素的左上角。
-        // function pointTo(ele,point) {
-        //     var box = ele.getBoundingClientRect();
-        //     return {
-        //         x: point.x - box.left,
-        //         y: point.y - box.top
-        //     };
-        // }
-        // //获取
-        // function getPagePos(event) {
-        //     var e = event || window.event;
-        //     var pageX=event.pageX!=null?event.pageX:(event.clientX+document.documentElement.scrollLeft||document.body.scrollLeft),
-        //         pageY=event.pageY!=null?event.pageY:(event.clientY+document.documentElement.scrollTop||document.body.scrollTop);
-        //     return {
-        //         x:pageX,
-        //         y:pageY
-        //     }
-        // }
-        //
-        // function getPoi(element){
-        //     var top= 0,left=0;
-        //     while(element!=null){
-        //         top+=element.offsetTop;
-        //         left+=element.offsetLeft;
-        //         element=element.offsetParent;
-        //     }
-        //     return {
-        //         top:top,
-        //         left:left
-        //     }
-        // }
     </script>
 </body>
 
