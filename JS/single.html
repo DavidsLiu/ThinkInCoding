@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>single</title>
+  <style media="screen">
+    .demo {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background-color: rgb(0,90,177);
+      font-family: Verdana;
+    }
+    .some {
+      position: absolute;
+      width: 200px;
+      height: 300px;
+      border: 10px solid rgb(255,222,0);
+      box-sizing: border-box;
+      top: 50px;
+      left: 50px;
+    }
+    .text {
+      position: absolute;
+      width: 200px;
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      color: rgb(255,222,0);
+      background-color: rgb(0,90,177);
+      top: 100px;
+      left: 150px;
+      font-size: 30px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="demo">
+    <div class="some">
+
+    </div>
+    <div class="text">
+        JavaScript
+    </div>
+  </div>
+  <script type="text/javascript">
+    // function User(name) {
+    //
+    //   if(typeof User.instance === 'object') {
+    //     return User.instance;
+    //   }
+    //   //正常数据处理
+    //   this.name = 'daiqingyun';
+    //
+    //   //静态属性
+    //   User.instance = this;
+    // }
+    // User.prototype.say = "hello";
+    // var u1 = new User();
+    // User.prototype.do = "do";
+    // var u2 = new User();
+    // console.log(u1 === u2); // true
+    // console.log(u1.say); //hello
+    // console.log(u2.say); //hello
+    // console.log(u1.do); //hello
+    // console.log(u2.do); //hello
+
+    // function User() {
+    //   var instance = this;
+    //
+    //   User = function() {
+    //     return instance;
+    //   }
+    //
+    //   User.prototype = this;
+    //
+    //   instance = new User();
+    //
+    //   instance.constructor = User;
+    //
+    //   instance.name = "dai";
+    //
+    //   return instance;
+    // }
+    // User.prototype.no = 'no';
+    // var u1 = new User();
+    // User.prototype.do = "do";
+    // var u2 = new User();
+    //
+    // console.log(u1.no); //no
+    // console.log(u2.no); //no
+    // console.log(u1.do); //do
+    // console.log(u2.do); //do
+
+    function Some() {
+
+    }
+    Some.prototype.say = "say";
+    var s1 = new Some();
+    var s2 = new Some();
+
+    Some.prototype.no = "no";
+
+    console.log(s1.say);
+    console.log(s2.say);
+    console.log(s1.no);
+    console.log(s2.no);
+
+
+
+
+
+
+  </script>
+</body>
+</html>
