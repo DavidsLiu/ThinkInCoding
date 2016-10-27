@@ -26,7 +26,7 @@ var twoSum = function(nums, target) {
 };
 
 //使用map
-var twoSum = function(nums,target) {
+var twoSum = function(nums, target) {
   var len = nums.length;
   var hash = {};
   nums.map(function(item,index){
@@ -36,12 +36,7 @@ var twoSum = function(nums,target) {
   for(var i = 0;i < len; i++) {
     var temp = target - nums[i];
     if(hash[temp]) {
-      if(hash[temp] > i) {
-        return [i,hash[temp]];
-      }
-      else {
-        return [hash[temp], i];
-      }
+      return [i,hash[temp]];
     }
   }
-}
+};
