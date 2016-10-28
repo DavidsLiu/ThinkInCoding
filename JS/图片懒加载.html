@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片懒加载</title>
+  <style media="screen">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .demo {
+      position: relative;
+      width: 200px;
+      margin: 0 auto;
+      list-style: none;
+    }
+    .demo img {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(240,240,240);
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <ul class="demo">
+    <li>
+      <img class="lazy" src="" data-original="http://scimg.jb51.net/allimg/150718/14-150GP34252X5.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" data-original="http://pic13.nipic.com/20110312/2531170_153312571580_2.jpg">
+    </li>
+    <li>
+      <img class="lazy" data-original="http://pic22.nipic.com/20120617/10197997_051452723000_2.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" data-original="http://scimg.jb51.net/allimg/150930/14-15093009112BW.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" data-original="http://img2.3lian.com/2014/f4/111/d/62.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" data-original="http://pic3.nipic.com/20090521/1359484_151916046_2.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://img3.hoto.cn/group/201303/22/2116060_51558932.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://pic1.nipic.com/2008-12-19/2008121984224985_2.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://img1.sc115.com/uploads/sc/jpg/144/18759.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://static8.photo.sina.com.cn/middle/5d49590et96c86da08e67&690&690.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://imgsrc.baidu.com/forum/pic/item/fcf0b64543a98226db8ecaa08a82b9014b90eb9a.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://img1.sc115.com/uploads/sc/jpg/144/18472.jpg" alt="">
+    </li>
+    <li>
+      <img class="lazy" src="" data-original="http://img05.tooopen.com/images/20140823/sy_69439648747.jpg" alt="">
+    </li>
+
+  </ul>
+
+
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery.lazyload.js"></script>
+  <script type="text/javascript">
+    /*
+
+    */
+    $(function(){
+      $('img.lazy').lazyload({
+        threshold : 200
+      });
+    });
+
+  </script>
+</body>
+</html>

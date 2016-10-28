@@ -46,30 +46,34 @@ var a = insert("5");
 var b = insert("5");
 
 var addTwoNumbers = function(l1, l2) {
-  //保存进位
+
   var a;
   var b;
-  var temp = 0;
-  var sumArray = [];
+  var carry = 0;
+  var result = null;
+  var temp = null;
   var t = new ListNode(0);
-  while(l1 !== null || l2 !== null || temp != 0) {
+  while(l1 !== null || l2 !== null || carry != 0) {
     a = l1 === null ? 0 : l1.val;
     b = l2 === null ? 0 : l2.val;
-    var tempSum = temp + a + b;
-    temp = tempSum > 9 ? 1 : 0;
-    sumArray.push(tempSum > 9 ? tempSum - 10 : tempSum);
-    l1 = l1 === null ? null : l1.next;
-    l2 = l2 === null ? null : l2.next;
+    var tempSum = carry + a + b;
+    carry = tempSum > 9 ? 1 : 0;
+    var node = new ListNode(tempSum % 10);
+    if(!result) {
+      result = temp = node;
+    }
+    else {
+      temp.next = node;
+      temp = temp.next;
+    }
+    if(l1 !== null) {
+      l1 = l1.next;
+    }
+    if(l2 !== null) {
+      l2 = l2.next;
+    }
   }
-  //转化为链表
-  var len = sumArray.length;
-  var result = sumArray.map(function(item){
-    return new ListNode(parseInt(item));
-  });
-  for(var i = 0; i < len - 1;i++) {
-    result[i].next = result[i + 1];
-  }
-  return result[0];
+  return result;
 };
 
 var some = addTwoNumbers(a,b);
