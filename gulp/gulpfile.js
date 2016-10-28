@@ -54,7 +54,7 @@ gulp.task('browser',function(){
 */
 gulp.task('img',function(cb){
   pump([
-    gulp.src(['src/images/*.*'),
+    gulp.src(['src/images/**']),
     imagemin(),
     rev(),
     gulp.dest('build/images'),
