@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chapter1</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    /*
+      全局变量会变成全局对象(window浏览器端)的属性
+      implied global
+    */
+    /*
+      1、no 'var'
+    */
+    // function add(a, b) {
+    //   //
+    //   result = a + b;
+    //   return result;
+    // }
+    //
+    // add(1, 2);
+    //
+    // for(var p in window) {
+    //   if(p === 'result') {
+    //     console.log(window[p]);
+    //   }
+    // }
+
+    /*
+      2 chain assignments
+    */
+
+    // function add() {
+    //   // right to left evaluation
+    //   var a = b = 2;
+    // }
+    // add();
+    //
+    // for(var p in window) {
+    //   if(p === "a" || p === "b") {
+    //     console.log(p + ' ' + window[p]); // b 2
+    //   }
+    // }
+
+
+    //declare multiple variables, don't create gloabal variable Single var pattern
+    // function add() {
+    //   var a = 1,
+    //       b = 2,
+    //       c = 3;
+    //
+    // }
+    // for(var p in window) {
+    //   if(p === "a" || p === "b" || p === "c") {
+    //     console.log(window[p]);
+    //   }
+    // }
+
+    //变量声明提升 Hoisting
+
+    // name = "globalname";
+    // function func() {
+    //   console.log(name); //undefined
+    //   var name = "localname";
+    //   console.log(name); //localname
+    // }
+    // func();
+
+    //for循环
+
+    // var i,
+    //     max,
+    //     arr = [1,2,3,4];
+    //
+    // for(i = 0,max = arr.length; i < max; i++) {
+    //   console.log(arr[i]);
+    // }
+
+
+    //for in
+    var people = {
+      name: 'dai',
+      age: 21,
+      sex: 1,
+      hasOwnProperty: function() {}//重写了hasOwnProperty方法
+    }
+
+    if(typeof Object.prototype.clone === "undefined") {
+      Object.prototype.clone = function(){};
+    }
+    Object.prototype.hasOwnProperty = function(){};
+    var p,
+        hasOwn = Object.prototype.hasOwnProperty;
+
+    for(p in people) {
+      if(hasOwn.call(people, p)) {
+        console.log(p + " " + people[p]);
+      }
+      // console.log(p + " " + people[p]);
+    }
+    //
+    //
+    // //build-in prototype
+    // if(typeof Object.prototype.mymethod !== "function") {
+    //   Object.prototype.mymethod = function() {
+    //     //do something
+    //   }
+    // }
+    //
+    //
+    // var some = 0,
+    //     result = '';
+    //
+    // switch(some) {
+    //   case 0:
+    //     result = 'zero';
+    //     break;
+    //   case 1;
+    //     result = 'one';
+    //     break;
+    //   default:
+    //     result = 'undefined';
+    // }
+
+    //avoid eval()
+
+    //avoid ==
+
+    //指定parseInt(a, b)的第二个参数 转化为number类型的快捷方式
+    // var a = "8";
+    // console.log(+a); // 8
+    // console.log(parseInt(a,10)); // 8
+    //
+    // var b = "08你好";
+    // console.log(+b); // NaN
+    // console.log(parseInt(b,10)); //8
+
+
+  </script>
+</body>
+</html>
