@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Function</title>
+</head>
+<body>
+  <script type="text/javascript" src="../Underscore.js"></script>
+  <script type="text/javascript" src="../Ramda.js"></script>
+  <script type="text/javascript">
+    /**
+     * named function expression
+     */
+
+    // var add = new Function('a, b','return a + b;');
+
+    // function add(a, b) {
+    //   return a + b;
+    // }
+    // console.log(add.name);
+
+    // var add = function(a, b) {
+    //   return a + b;
+    // }
+
+    // /**
+    //  * function hoisting
+    //  */
+    //
+
+
+      // console.log(add); //undefined
+      // var add = function(a, b) {
+      //   return a + b;
+      // }
+      // console.log(add(1,2)); //3
+
+    // /**
+    //  * callback
+    //  */
+
+
+    // var name = 'global name'
+    // var obj = {
+    //   name: 'obj name'
+    // }
+    //
+    // function action(obj, callback) {
+    //
+    //   callback.call(obj);
+    // }
+    //
+    // function getName() {
+    //   console.log(this.name);
+    // }
+    //
+    // action(obj, getName);
+
+
+    // /**
+    //  * 函数可以作为返回值 ， 闭包的产生
+    //  */
+
+
+    // function step() {
+    //   var count = 0;
+    //   return function() {
+    //     return ++count;
+    //   }
+    // }
+    //
+    // var next = step();
+    // console.log(next()); //1
+    // console.log(next()); //2
+    // console.log(next()); //3
+
+
+    // //动态定义函数
+
+    // function once() {
+    //   console.log('one');
+    //   once = function() {
+    //     console.log('two');
+    //   }
+    // }
+    // once(); // 'one'
+    // once(); // 'two'
+    // once(); // 'two'
+
+
+
+
+    //
+    // /**
+    //  * IIFE  scope sandbox
+    //  */
+    //
+    // var i,
+    //     max;
+    // for(i = 0,max = 5; i < max; i++) {
+    //   (function(i) {
+    //     setTimeout(function() {
+    //       console.log(i);
+    //     },300);
+    //   })(i);
+    // }
+
+
+    // /**
+    //  * Init-Time Branching
+    //  */
+    //
+    // var utils = {
+    //   addListener: function(ele, type, fn) {
+    //     if(typeof window.addEventListener === "function") {
+    //       ele.addEventListener(type, fn, false);
+    //     }
+    //     else if(typeof document.attachEvent === 'function') {
+    //       ele.attachEvent('on' + type, fn);
+    //     }
+    //     else {
+    //       ele['on' + type] = fn;
+    //     }
+    //   },
+    //   removeListener: function(ele, type, fn) {
+    //     if(typeof window.removeEventListener === "function") {
+    //       ele.removeEventListener(type, fn, false);
+    //     }
+    //     else if(typeof document.detachEvent === 'function') {
+    //       ele.detachEvent('on' + type, fn);
+    //     }
+    //     else {
+    //       ele['on' + type] = null;
+    //     }
+    //   }
+    // }
+    //
+    // var utils = {
+    //   addListener: null,
+    //   removeListener: null
+    // }
+    //
+    // if(typeof window.removeListener === "function") {
+    //   utils.addListener = function(e, type, fn) {
+    //     e.addEventListener(type, fn, false);
+    //   }
+    //   utils.removeListener = function(e, type, fn) {
+    //     e.removeEventListener(type, fn, false);
+    //   }
+    // }
+    // else if(typeof window.attachEvent === "function") {
+    //   utils.addListener = function(e, type, fn) {
+    //     e.attachEvent('on' + type, fn);
+    //   }
+    //   utils.removeListener = function(e, type, fn) {
+    //     e.detachEvent('on' + type, fn);
+    //   }
+    // }
+    // else {
+    //   utils.addListener = function(e, type, fn) {
+    //     e['on' + type] = fn;
+    //   }
+    //   utils.removeListener = function(e, type, fn) {
+    //     e['on' + type] = null;
+    //   }
+    // }
+    //
+    //
+    // /**
+    //  *  函数记忆功能
+    //  */
+    //
+
+
+
+    // var memery = function(a....) {
+    //
+    //   var hashkey = JSON.stringify(Array.prototype.slice.call(arguments));
+    //
+    //   if(!memery.cache[hashkey]) {
+    //     var result = 'cache function';
+    //     memery.cache[hashkey] = result;
+    //   }
+    //   return memery.cache[hashkey];
+    // }
+    //
+    //
+
+
+    //
+    // /**
+    //  * 对于函数的要传入多个参数 ，使用Configuration Objects
+    //  */
+    //
+    // /**
+    //  * Currying是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数的技术
+    //  */
+    //
+    // // function addNum(x, y) {
+    // //   if(typeof y === "undefined") {
+    // //     return function(newy) {
+    // //       return x + y;
+    // //     }
+    // //   }
+    // //   return x + y;
+    // // }
+    // // console.log(addNum(1, 2));
+    // // console.log(addNum(1)(2));
+    //
+    //
+    // /**
+    //  * 科里化经典的例子  常见的面试题sum(1)(2)(3)(4) = 10
+    //  */
+    //
+    function sum(x) {
+      var result = x,
+          temp = function(y) {
+            result += y;
+            return temp;
+          };
+
+      temp.toString = temp.valueOf = function() {
+        return result;
+      }
+
+      return temp;
+    }
+    console.log(+sum(1)(2)(3)(4));
+
+  </script>
+</body>
+</html>
