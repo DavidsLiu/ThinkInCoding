@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Factory</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     *  factory by static property
+     */
+    function CarMaker(){};
+    //车的基本功能
+    CarMaker.prototype.config = function () {
+      console.log('i have ' + this.doors + ' doors');
+    }
+    CarMaker.factory = function (type) {
+      var newcar;
+      //判断工厂里有没有生产这种类型车的技术
+      if(typeof CarMaker[type] !== 'function') {
+        console.log('我们不生产这种类型的车');
+        return;
+      }
+      //该类型的车第一次生产时，要指定车的基本功能
+      //（这里也就是继承原型链）
+      if(typeof CarMaker[type].prototype.config !== 'function') {
+        CarMaker[type].prototype = new CarMaker();
+      }
+      //创建实例
+      newcar = new CarMaker[type]();
+      return newcar;
+    }
+    //生产各种类型车辆的方法
+    CarMaker.Compact = function () {
+      this.doors = 4;
+    }
+    CarMaker.Convertible = function () {
+      this.doors = 2;
+    }
+    CarMaker.SUV = function () {
+      this.doors = 24;
+    }
+
+    var suv = CarMaker.factory('SUV');
+    suv.config(); // 'i have 24 doors'
+
+    //其实JS中的工厂模式，也避免我们在创建实例的时候使用new关键字。
+
+
+    //JS中的Object也是一个工厂模式
+
+    var o1 = new Object(),
+        o2 = new Object(1),
+        o3 = Object(false),
+        o4 = Object('1');
+
+    console.log(o1.constructor.name); // 'Object'
+    console.log(o2.constructor.name); // 'Number'
+    console.log(o3.constructor.name); // 'Boolean'
+    console.log(o4.constructor.name); // 'String'
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
