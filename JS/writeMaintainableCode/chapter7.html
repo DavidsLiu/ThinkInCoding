@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Iterator</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     * Iterator
+     */
+    // var Iterator = function () {
+    //   var data = [1,2,3,4,5],
+    //       index = 0,
+    //       length = data.length;
+    //   return {
+    //     hasNext: function () {
+    //       return index < length;
+    //     },
+    //     next: function () {
+    //       var element = data[index];
+    //       index += 1;
+    //       return element;
+    //     },
+    //     rewind: function () {
+    //       index = 0;
+    //       return true;
+    //     },
+    //     current: function () {
+    //       return data[index < length ? index : length - 1];
+    //     }
+    //   }
+    // }
+    //
+    // var it = Iterator();
+    // while (it.hasNext()) {
+    //   console.log(it.next()); // 1,2,3,4,5
+    // }
+    // it.rewind();
+    // console.log(it.current()); // 1
+
+
+    var arr = [1,2,3,4,5],
+        i,
+        max;
+    for(i = 0, max = arr.length; i < max; i++) {
+      if(i === 2) {
+        // break or continue
+      }
+      console.log(arr[i]);
+    }
+
+    arr.forEach(function (value, index ,arr) {
+      if(index === 3) {
+        // break; do not
+      }
+      console.log(value);
+    })
+
+    //for in 遍历数组
+    // 1、index变成了字符串 2、会遍历出原型上的属性 3、有可能顺序会改变。
+
+
+  </script>
+</body>
+</html>
