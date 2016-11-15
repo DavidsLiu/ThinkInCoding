@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>倒影</title>
+  <style media="screen">
+    .demo {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      margin: 50px 0;
+      transform-style: preserve-3d;
+      perspective: 800;
+      -webkit-perspective: 800;
+      font-size: 0;
+    }
+    .img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 329px;
+      height: 220px;
+      transform: translate(-50%,-50%) translateZ(100px);
+      background-image: url(img/xienan11.jpg);
+      -webkit-box-reflect: below 5px -webkit-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,1));
+    }
+
+    .tem {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1000px;
+      height: 400px;
+      background-color: red;
+      border-radius: 10px;
+      transform-origin: center;
+      transform: translate(-50%,-50%) rotateX(2deg) rotateY(-1deg);
+      box-shadow: 15px 15px 10px rgba(213,213,213,.7), 0px 0px 10px rgba(213,213,213,.7);
+    }
+  </style>
+</head>
+<body>
+  <div class="demo">
+    <!-- <div class="img"></div> -->
+
+    <div class="tem">
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    /**
+     * 1、获取鼠标在图形中的坐标
+     * 2、坐标与翻转之间的映射关系
+     *   rotateX = - ( y * (4 / height )) + 4 / 2;
+     *   rotateY = x * (2 / width) - (2 / 2);
+     * 3、坐标与投影之间的映射关系
+     *   四个方向上的偏移量
+     *   dt = y;
+     *   db = height - y;
+     *   dl = x;
+     *   dr = width -x;
+     *   投影系数
+     *   hs = (20 / width)
+     *   vs = (20 / height)
+     *
+     *   投影
+     *   st = dt * vs;
+     *   sb = db * vs;
+     *   sl = dl * hs;
+     *   sr = dr * hs;
+     */
+  </script>
+</body>
+</html>
