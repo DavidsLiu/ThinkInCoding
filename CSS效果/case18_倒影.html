@@ -23,7 +23,7 @@
       width: 329px;
       height: 220px;
       transform: translate(-50%,-50%) translateZ(100px);
-      background-image: url(img/xienan11.jpg);
+      background-image: url(http://static.smartisanos.cn/index/img/store/home/banner-3d-item-m12-box-1_ceefc9047f.png);
       -webkit-box-reflect: below 5px -webkit-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,1));
     }
 
@@ -31,13 +31,17 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 1000px;
-      height: 400px;
-      background-color: red;
+      width: 1220px;
+      height: 500px;
+      background-image: url('img/t.png');
       border-radius: 10px;
       transform-origin: center;
-      transform: translate(-50%,-50%) rotateX(2deg) rotateY(-1deg);
-      box-shadow: 15px 15px 10px rgba(213,213,213,.7), 0px 0px 10px rgba(213,213,213,.7);
+      transform: translate(-50%,-50%);
+      /*transition: 16.666ms all ease-in-out;*/
+      cursor: pointer;
+    }
+    .tem:hover {
+      transform: translate3d(-50%,-50%,10px);
     }
   </style>
 </head>
@@ -45,12 +49,80 @@
   <div class="demo">
     <!-- <div class="img"></div> -->
 
-    <div class="tem">
-
+    <div class="tem" id="box">
     </div>
   </div>
-
+  <script type="text/javascript" src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
   <script type="text/javascript">
+
+  var tem = document.getElementById('box'),
+      point = {},
+      timeId = null;
+
+  tem.addEventListener('mousemove',function (e) {
+    point = getBoxPoint(tem, {x: e.clientX, y: e.clientY})
+    // getRotate(tem, point);
+    if(!timeId) {
+      timeId = setTimeout(function () {
+        getRotate(tem, point);
+        clearTimeout(timeId);
+        timeId = null;
+      },1000 / 60);
+    }
+
+
+  }, false);
+
+  function con() {
+    console.log('11');
+  }
+
+
+  //获取容器内坐标
+  function getBoxPoint(element, point) {
+    var box = element.getBoundingClientRect();
+    return {
+      x: point.x - box.left,
+      y: point.y - box.top
+    }
+  }
+
+  //设置翻转
+  function getRotate(element, point) {
+    var rotateX = - (point.y * (4 / 400)) + 4 / 2,
+        rotateY = point.x * (2 / 1000) - (2 / 2);
+
+    $('#box').css('transform','translate(-50%,-50%) translateZ(10px) rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)');
+    console.log($('#box').css('transform'));
+  }
+
+  // function throttle(func, wait) {
+  //   var context, args, result;
+  //   var timeId = null;
+  //   var previous = 0;
+  //   return function() {
+  //     var now = Date.now();
+  //     //计算剩下的时间
+  //     var remaining = wait - (now - previous);
+  //     context = this;
+  //     args = arguments;
+  //     //此处很严谨 防止篡改系统是时间
+  //     if (remaining <= 0 || remaining > wait) {
+  //        //setTimeout 有最小的执行间隔 ，  因此如果 到达wait时 上一次的timeout可能并没有执行呢，所以要先清除
+  //        if(timeId) {
+  //          clearTimeout(timeId);
+  //          timeId = null;
+  //        }
+  //        previous = now;
+  //        result = func.apply(context, args);
+  //        if(!timeId) {
+  //          context = args = null;
+  //        }
+  //     }
+  //
+  //     return result;
+  //   }
+  // }
 
     /**
      * 1、获取鼠标在图形中的坐标
