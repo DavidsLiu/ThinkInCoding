@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件</title>
+  <style media="screen">
+    .fath {
+      width: 400px;
+      height: 400px;
+      background-color: red;
+    }
+    .child {
+      width: 200px;
+      height: 200px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <a id="link" href="https://www.baidu.com">我是百度</a>
+
+  <button type="button" name="button" onclick="alert('1');">确定</button>
+
+  <button id="btn" type="button" name="button">监听</button>
+
+
+  <div class="fath">
+    <div class="child"></div>
+  </div>
+  <script type="text/javascript">
+    /**
+     * facade
+     */
+    //外观模式
+
+    //事件
+    //事件类型(event type)
+    //事件目标(evnet target)
+    //事件处理程序(event handle) fire trigger dispatch
+    //事件对象(event object)(在ie8及之前的版本只能通过全局变量event获取,并且target 是 srcElement)
+    //事件传播 冒泡 捕获（ie8不支持捕获）
+    //
+    //
+    //3级DOM事件 不冒泡的focusin和focusout代替冒泡的focus和blur  不冒泡的mouseenter和mouseleave代替冒泡的mouseover和mouseout
+
+    //事件处理程序属性放在HTML标签的属性上，属性值为javascript字符串
+    //这样的方式虽然不存在兼容性的问题，但是我们一直强调样式与行为分离。
+
+
+
+    //on + 事件名称(区分大小写的，所有的时间名称多是小写)
+    window.onload = function () {
+      console.log("页面加载完毕");
+    }
+    window.onload = function () {
+      console.log('页面加载完了，我慢了！');
+    }
+
+    //这种注册方式适用于所有浏览器的所有常用的事件类型
+    //缺点这种方式会覆盖之前的声明。
+
+
+
+    //addEventListener()
+    //除了ie8以及之前的版本
+    //第一参数为事件类型，必须要省略掉on 第二个为事件发生时调用的函数，第三个参数通常传入false.如果你传入true,则为捕获事件处理程序。
+    //按照注册的顺序执行
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click', function (e) {
+      console.log('你点击了这个按钮');
+    }, false);
+    btn.addEventListener('click', function (e) {
+      console.log('你漏掉了我的提示');
+    }, false);
+
+    //有了注册事件，同样可以取消  removeEventListener()
+
+    btn.addEventListener('click', message, false);
+    function message(e) {
+      var ele = e || window.event;
+          target = ele.target || ele.srcElement;
+      console.log(target);
+      btn.removeEventListener('click', message, false);
+    }
+
+
+    //ie9之前的 attachEvent() detachEvent()
+    //ie事件不支持捕获
+    //第一个参数必须加上on
+    //执行顺序不确定
+
+    //事件处理程序的返回值，只有在对象属性或者HTML属性注册的事件才有效
+    var link = document.getElementById('link');
+    link.onclick = function (e) {
+      //阻止link的默认行为
+      cancelEvent(e);
+    }
+
+    function cancelEvent(e) {
+      var event = e || window.event;//用于IE8及以下。
+      if (event.preventDefault) {
+        event.preventDefault(); //标准浏览器
+      }
+      else if (event.returnValue) {
+        event.returnValue = false; //IE
+      }
+      else {
+        return false; //用于处理使用对象属性注册的处理程序
+      }
+    }
+
+    //对于监听事件，只能采用preventDefault() 和 事件对象的returnValue
+
+    //捕获阶段 -》 处于目标 -》 冒泡阶段
+
+
+
+    //阻止事件传播
+    var fath = document.querySelector('.fath'),
+        child = document.querySelector('.child');
+
+    fath.addEventListener('click', function () {
+      console.log('father');
+    });
+    child.addEventListener('click', function (e) {
+      console.log('children');
+      stopBubble(e);
+    });
+
+    function stopBubble(e) {
+      var event = e || window.event;
+      if (event.stopPropagation) {
+        event.stopPropagation();
+      }
+      else if (event.cancelBubble) {
+        event.cancelBubble = true;
+      }
+    }
+
+
+
+
+  </script>
+</body>
+</html>
