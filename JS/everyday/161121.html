@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input id="card" type="text" name="name" value="">
+
+  <script type="text/javascript">
+    /**
+     * input值得实时观察
+     */
+
+    //change触发： （1）当前对象的属性改变，并且由键盘鼠标触发的（JS代码是无法触发的） （2）失去焦点
+    var card = document.getElementById('card');
+    card.addEventListener('change', function (e) {
+      var target = e.target;
+      console.log(target.value);
+    }, false);
+
+    //keypress只能监听键盘事件
+
+    //propertychange input
+    card.addEventListener('input', function (e) {
+      var target = e.target;
+      console.log(target.value);
+    }, false);
+
+
+  </script>
+</body>
+</html>

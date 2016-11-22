@@ -6,72 +6,94 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>锤子官网效果</title>
   <style media="screen">
-    .con {
-      position: relative;
-      width: 600px;
-      height: 300px;
-      margin: 100px auto;
-      font-size: 0;
-    }
-    .demo {
-      position: relative;
-      display: inline-block;
-      width: 200px;
-      height: 300px;
-      margin-left: -1px;
-      background-color: #fff;
-      border: 1px solid rgb(213,213,213);
-      transition: .5s all ease-in-out;
-      box-sizing: border-box;
-    }
+  .demo {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: 50px 0;
+    transform-style: preserve-3d;
+    perspective: 800;
+    -webkit-perspective: 800;
+    font-size: 0;
+  }
 
-    .demo:hover {
-      box-shadow: 10px 10px 20px rgb(250,250,250) inset,-10px -10px 20px rgb(250,250,250) inset;
-    }
-
-
-    .contain {
-      position: relative;
-      width: 1000px;
-      height: 400px;
-      margin: 100px auto;
-      background-color: rgb(250,250,250);
-
-      transform-style: preserve-3d;
-      perspective: 1200px;
-      perspective-origin: center;
-      border: 1px solid #fff;
-    }
-
-    .item {
-      position: relative;
-      width: 800px;
-      height: 300px;
-      margin: 50px 100px;
-      background-color: red;
-    }
+  .tem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1220px;
+    height: 500px;
+    background-image: url('img/t.png');
+    border-radius: 10px;
+    transform-origin: center;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+  }
+  .tem:hover {
+    transform: translate3d(-50%,-50%,20px);
+  }
 
   </style>
 </head>
 <body>
-  <div class="con">
-    <div class="demo"></div>
-    <div class="demo"></div>
-    <div class="demo"></div>
+  <div class="demo">
+    <div class="tem" id="box">
+    </div>
   </div>
-
-
-  <h3 style="text-align: center;">裸眼3d</h3>
-
-  <div class="contain">
-    <div class="item"></div>
-  </div>
-
+  <script type="text/javascript" src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
   <script type="text/javascript">
-    /**
-     * 阴影造就3D效果
-     */
 
+  var tem = document.getElementById('box'),
+      point = {},
+      timeId = null;
+
+  tem.addEventListener('mousemove',function (e) {
+    point = getBoxPoint(tem, {x: e.clientX, y: e.clientY})
+    if(!timeId) {
+      timeId = setTimeout(function () {
+        getRotate(tem, point);
+        clearTimeout(timeId);
+        timeId = null;
+      },1000 / 60);
+    }
+
+
+  }, false);
+
+
+  //获取容器内坐标
+  function getBoxPoint(element, point) {
+    var box = element.getBoundingClientRect();
+    return {
+      x: point.x - box.left,
+      y: point.y - box.top
+    }
+  }
+
+  //设置翻转
+  function getRotate(element, point) {
+    var elementWidth = element.offsetWidth,
+        elementHeight = element.offsetHeight,
+        xOffset = 2,
+        yOffset = 6,
+        rotateX = - (point.y * (yOffset / elementHeight)) + yOffset / 2,
+        rotateY = point.x * (xOffset / elementWidth) - (xOffset / 2);
+    element.style.transform = 'translate(-50%,-50%) translateZ(20px) rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)';
+  }
+
+  function getShadow(element, point) {
+    var dt = point.y,
+        db = 500 - point.y,
+        dl = point.x,
+        dr = 1220 - point.x,
+        st = dt * 20,
+        sb = db * 20,
+        sl = dl * 20,
+        sr = dr * 20;
+
+    $('#box').css('box-shadow','5px 5px 30px rgba(213,231,213,.4)')
+    // $('#box').css('box-shadow',''+ -sl +' '+ -st +' 30px rgba(213,213,213,.4), '+sb+' '+sr+' 30px rgba(213,231,213,.4)')
+  }
 
   </script>
 </body>
