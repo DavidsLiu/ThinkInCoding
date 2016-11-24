@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 只能输入汉字 -->
+  <input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" ID="Text4" NAME="Text4">
+  <input type="text" id="textinput" name="" value="">
+  <script type="text/javascript">
+    /**
+     * 键盘事件
+     */
+    //keydown keyup
+
+    var textInput = document.getElementById('textinput');
+
+    //input propertychange
+
+    //标准浏览器
+    textInput.addEventListener('input', function (e) {
+      var target = e.target,
+          result = formatCard(target.value);
+
+       target.value = result;
+    }, false);
+    //IE浏览器
+    textInput.addEventListener('propertychange', function (e) {
+
+    }, false);
+
+    function formatCard(str) {
+      return str;
+    }
+  </script>
+</body>
+</html>

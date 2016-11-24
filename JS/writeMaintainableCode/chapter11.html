@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Proxy</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     * Proxy
+     */
+    //对于对象的获取十分消耗资源的。
+    //比如说我们要在数据库中查找数据
+    function DataBaseModel() {
+      this.getData = function (data) {
+        if (data === '100001') {
+          return {
+            name: 'xiaoming',
+            age: 21,
+            sex: '男'
+          }
+        }
+        else if (data === '100002') {
+          return {
+            name: 'xiaohong',
+            age: 18,
+            sex: '女'
+          }
+        }
+        else if (data === '100003') {
+          return {
+            name: 'xiaozhao',
+            age: 29,
+            sex: '男'
+          }
+        }
+        else {
+          return {
+            name: 'no name',
+            age: 0,
+            sex: 'no sex'
+          }
+        }
+      }
+    }
+
+    function Proxy() {
+      var data = new DataBaseModel(),
+          datacache = {};
+
+      return {
+        getData: function (str) {
+          if (!datacache[str]) {
+            datacache[str] = data.getData(str);
+          }
+          return datacache[str];
+        },
+        getCount: function () {
+          var count = 0;
+          for(var s in datacache) {
+            count++;
+          }
+          return count;
+        }
+      }
+    }
+
+    function run() {
+      var proxy = new Proxy();
+
+      proxy.getData('100001')
+      proxy.getData('100002')
+      proxy.getData('100001')
+    }
+
+    run();
+  </script>
+</body>
+</html>
