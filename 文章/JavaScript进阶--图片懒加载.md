@@ -8,7 +8,7 @@
   * 设置img标签自定义属性data-src为真是图片的url。
   * 页面加载完成后，根据你设定的时机替换img标签的src。
   效果图:
-  <center>[!image](http://o8sux93eg.bkt.clouddn.com/ljz.png)</center>
+  <center>![image](http://o8sux93eg.bkt.clouddn.com/ljz.png)</center>
 
   获取页面所有的img。
 ```js
@@ -99,3 +99,4 @@
    */
   document.addEventListener('DOMContentLoaded', lazyLoad, false);
 ```  
+  [github源码地址](https://github.com/15751165579/ThinkInCoding/blob/master/JS/base/%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD.html)
