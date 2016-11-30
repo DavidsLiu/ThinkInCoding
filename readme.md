@@ -11,3 +11,4 @@
 * [vue资源](https://github.com/vuejs/awesome-vue)
 * [vue开源项目](https://github.com/jackhutu/jackblog-vue)
 * [vueui](https://github.com/ElemeFE/element)
+* [node沙龙](http://nodejs.club/)
