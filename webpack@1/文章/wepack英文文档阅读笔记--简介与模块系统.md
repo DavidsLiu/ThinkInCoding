@@ -13,35 +13,47 @@
 #####加载器(Loaders)
 ```
   对于加载器带给我们太多的便利，举几个栗子吧：
+  (1) 为我们的CSS添加前缀。
+  (2) 将小于8KB的图片base64
+  (3) 使用less预处理器
+  (4) 等等。。
 ```
-  * 为我们的CSS添加前缀。
-  * 将小于8KB的图片base64
-  * 使用less预处理器
-  * 等等。。
 
 #####支持(Support)
-  webpack支持AMD和CommonJS规范，支持大部分的其他库.
+```
+  webpack支持AMD和CommonJS规范，支持大部分的其他库.  
+```
 
 #####按需加载(Code Splitting)
+```
   我们将第三方js文件放入chunks,而chunks中是按需加载的，这能大大的减少我们的加载时间。
+```
 
 #####优化(Optimizations)
+```
   webpack可以优化我们输出的JS文件的大小，同时也可以通过hashes静态文件缓存问题。
+```
 
 #####调试工具(Development Tool)
+```
   webpack支持SourceUrls和SourceMaps, 你也可以用 development server 来实现自动刷新。
+```
 
 #####不仅仅是web
+```
   webpack的服务不仅仅局限于web,WebWorkers和NodeJS同样可以使用。
+```
 
 ###webpack的出现
+```
   现在的前端开发多强调前后端分离，所以大部分需要写的代码回归到了我们前端的手中（是不是很爽），所以我们需要组织我们的代码，需要有一个模块体系：
-  * 最初的script标签
-  * CommonJS规范
-  * AMD规范
-  * ES6 Module
+  (1) 最初的script标签
+  (2) CommonJS规范
+  (3) AMD规范
+  (4) ES6 Module
+```
 
-#####script
+#####<script>
   我们一般多是使用script标签引入JS库，而这种方式带来的问题:
   * 全局变量的冲突
   * 依赖的管理
