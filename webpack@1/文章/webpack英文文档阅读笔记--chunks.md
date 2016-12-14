@@ -27,13 +27,17 @@
   require.ensure(['./js/b.js'], function (require) {
     const b = require('./js/b.js');
     b.say();
-  });
+  },'other'); // 添加一个chunkName
 
   此时webpack会生成bundle.js和1.bundle.js两个文件。
   而我们只需要引用bundle.js，1.bundle.js则是按需加载。
 ```
-<center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_1.png)</center>
+  打包的过程
+  <center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_2.png)</center>
+
+  html加载的过程
+  <center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_1.png)</center>
 
 ```js
-  
+
 ```
