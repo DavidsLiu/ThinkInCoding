@@ -12,3 +12,5 @@
 * [vue开源项目](https://github.com/jackhutu/jackblog-vue)
 * [vueui](https://github.com/ElemeFE/element)
 * [node沙龙](http://nodejs.club/)
+* [CSS学习网站](http://cssreference.io/box-model/)
+* [免费书籍](https://speckyboy.com/free-web-design-ebooks/)
