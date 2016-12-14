@@ -6,7 +6,7 @@ module.exports = {
     // vendor: ['jquery', 'underscore']
   },
   output: {
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   // plugins: [
   //   new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
