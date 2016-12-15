@@ -1,5 +1,5 @@
-var info = {};
-info.say = function () {
-  console.log('a');
-}
-module.exports = info;
+const $ = require('./jquery.js');
+$('#demo').css('color','red');
+require(['./share.js'], function (share) {
+  share('page one');
+});

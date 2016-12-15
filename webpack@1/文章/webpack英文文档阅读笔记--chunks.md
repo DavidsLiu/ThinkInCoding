@@ -42,5 +42,44 @@
   -----------
     多个入口
   -----------
-    
+  a.js:
+  const $ = require('./jquery.js');
+  $('#demo').css('color','red');
+  require(['./share.js'], function (share) {
+    share('page one');
+  });
+
+  b.js:
+  const $ = require('./jquery.js');
+  $('#demo').css('color','yellow');
+  require.ensure(['./share.js'], function (require) {
+    const share = require('./share.js');
+    share('page two');
+  });
+
+  这里jquery.js和share.js是两个入口文件共同使用的。
+
+  webpack.config.js:
+  entry: {
+    pageA: './js/a.js',
+    pageB: './js/b.js',
+    vendor: ['./js/jquery.js','./js/share.js']
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+    chunkFilename: '[id].chunk.js'
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
+  ]
 ```
+
+  打包过程
+<center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_3.png)</center>
+
+  页面A加载过程
+<center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_4.png)</center>
+
+  页面B加载过程
+<center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_5.png)</center>  
