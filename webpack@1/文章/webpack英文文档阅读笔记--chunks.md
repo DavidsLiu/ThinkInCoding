@@ -14,13 +14,16 @@
 ```
 
 ###webpack中的chunks
-  对于一个大型应用，我们将多有的JS文件打包成一个文件，显然效率不高。特别是其中的大部分JS文件是在特定情况下才需要加载的。而webpack中的一个特点就是将所有的文件打包成一个'chunks'，达到按需加载的目的.规划按需加载的特点我们称之为代码分隔(code splitting).
+  对于一个大型应用，我们将多有的JS文件打包成一个文件，显然效率不高。特别是其中的大部分JS文件是在特定情况下才需要加载的。而webpack中的一个特点就是将所有的文件打包成一个'chunks'，达到按需加载的目的.规划按需加载的特点我们称之为代码分隔(code splitting). 再看下面几个例子首先要明白
+  * 在你的项目根目录建立一个webpack.config.js(这里配置你的打包选项)
+  * 在命令行中输入webpack会默认执行webpack.config.js文件
 
 ```js
   ------------
     单个入口
   ------------  
 
+  app.js
   const a = require('./js/a.js');
   a.say();
   //这里的ensure函数的第一个参数 依赖项只会被下载下来并不会被执行。
@@ -29,8 +32,15 @@
     b.say();
   },'other'); // 添加一个chunkName
 
+  webpack.config.js:
+  entry: {
+    app: './app.js',
+  },
+  output: {
+    filename: 'bundle.js'
+  },
   此时webpack会生成bundle.js和1.bundle.js两个文件。
-  而我们只需要引用bundle.js，1.bundle.js则是按需加载。
+  而我们只需要引用bundle.js, 1.bundle.js则是按需加载。
 ```
   打包的过程
   <center>![images](http://o8sux93eg.bkt.clouddn.com/webpack1_2_2.png)</center>
