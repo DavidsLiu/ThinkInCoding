@@ -3,16 +3,24 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    pageA: './js/a.js',
-    pageB: './js/b.js',
-    vendor: ['./js/jquery.js','./js/share.js']
+    app: './js/app.js',
+    vendor: ['./js/jquery.js']
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    chunkFilename: '[id].chunk.js'
+    path: path.join(__dirname, '/dist'),
+    filename: '[name].chunk.js'
   },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
+  },
+
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
+    new webpack.optimize.CommonsChunkPlugin('vendor','vendor.chunk.js')
   ]
 }
