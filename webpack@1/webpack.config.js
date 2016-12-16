@@ -1,10 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack'),
+      path = require('path');
 
 module.exports = {
   entry: {
     app: './js/app.js',
-    vendor: ['./js/jquery.js']
+    vendor: ['./js/jquery.js', './js/math.js']
   },
   output: {
     path: path.join(__dirname, '/dist'),
@@ -19,8 +19,15 @@ module.exports = {
       }
     ]
   },
-
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor','vendor.chunk.js')
+    new webpack.optimize.CommonsChunkPlugin('vendor','vendor.chunk.js'),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      }
+    })
   ]
 }
