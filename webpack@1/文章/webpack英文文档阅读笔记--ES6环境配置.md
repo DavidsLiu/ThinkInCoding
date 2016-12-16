@@ -42,7 +42,13 @@
   import Math from './math.js';
   let result = Math.add(2000, 16);
   $('#demo').html('hello ' + result + ' !');
+```
 
+###webpack的配置
+
+  对于js压缩插件，之前用gulp时，还需要自己去下载相应的npm包,webpack就比较人性化了，本身就集成了JS压缩插件。
+
+```js
   webpack.config.js:
 
   const webpack = require('webpack'),
@@ -59,7 +65,7 @@
     },
     module: {
       loaders: [
-        //实现es6转码的loader
+        //实现es6转码的loader配置
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -80,5 +86,4 @@
       })
     ]
   }
-
 ```
