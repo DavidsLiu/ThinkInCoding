@@ -1,10 +1,12 @@
 const webpack = require('webpack'),
-      path = require('path');
+      path = require('path'),
+      ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 module.exports = {
   entry: {
-    app: './js/app.js',
-    vendor: ['./js/jquery.js', './js/math.js']
+    a: './js/a.js',
+    b: './js/b.js'
   },
   output: {
     path: path.join(__dirname, '/dist'),
@@ -13,21 +15,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       }
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor','vendor.chunk.js'),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      output: {
-        comments: false
-      }
-    })
+    new webpack.optimize.CommonsChunkPlugin('commons','commons.js'),
+    new ExtractTextPlugin("[name].css")
   ]
 }

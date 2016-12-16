@@ -1,1 +1,0 @@
-webpackJsonp([0],[function(e,t,u){"use strict";function d(e){return e&&e.__esModule?e:{default:e}}var l=u(1),a=d(l),n=u(4),o=d(n),f=o.default.add(2e3,16);(0,a.default)("#demo").html("hello "+f+" !")}]);
