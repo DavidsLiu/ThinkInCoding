@@ -1,1 +1,1 @@
-require('../css/c.css');
+require('../css/base.less');
