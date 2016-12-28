@@ -48,9 +48,7 @@
   * 自动刷新的功能，更加快捷。
   简单的命令：
   ```js
-    /**
-     * --content-base dist/ 指定服务器的根目录
-     * --inline 自动刷新 （保存才会触发自动刷新）
-     */
+    //(1) --content-base dist/ 指定服务器的根目录
+    //(2) --inline 自动刷新 （保存才会触发自动刷新）
     webpack-dev-server --content-base dist/ --inline
   ```
