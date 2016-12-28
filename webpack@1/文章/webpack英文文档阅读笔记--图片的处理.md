@@ -42,3 +42,15 @@
       loader: 'html-withimg-loader'
     },
   ```
+
+  这里再简单的介绍一下webpack-dev-server，使用这个插件的好处：
+  * 配置一个本地服务器方便调试。
+  * 自动刷新的功能，更加快捷。
+  简单的命令：
+  ```js
+    /**
+     * --content-base dist/ 指定服务器的根目录
+     * --inline 自动刷新 （保存才会触发自动刷新）
+     */
+    webpack-dev-server --content-base dist/ --inline
+  ```
