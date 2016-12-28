@@ -44,14 +44,29 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	__webpack_require__(1);
 
+	var img = document.getElementById('demo');
+
+	img.style.backgroundImage = 'url(' + __webpack_require__(6) + ')';
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "images/bg.png";
 
 /***/ }
 /******/ ]);
