@@ -37,9 +37,8 @@
        */
     },
     {
-      //处理img标签中通过src引用图片你的情况
+      //处理img标签中通过src引用图片的情况
       test: /\.(htm|html)$/,
       loader: 'html-withimg-loader'
     },
   ```
-    
