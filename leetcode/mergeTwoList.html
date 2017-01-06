@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+  /**
+    * Definition for singly-linked list.
+    * function ListNode(val) {
+    *     this.val = val;
+    *     this.next = null;
+    * }
+    */
+    /**
+    * @param {ListNode} l1
+    * @param {ListNode} l2
+    * @return {ListNode}
+    */
+    var mergeTwoLists = function(l1, l2) {
+      /**
+       * 递归的方法 50%
+       */
+      if (!l1) {
+        return l2;
+      }
+      if (!l2) {
+        return l1;
+      }
+      var temp;
+      if (l1.val > l2.val) {
+        temp = l2;
+        temp.next = mergeTwoLists(l1, l2.next);
+      } else {
+        temp = l1;
+        temp.next = mergeTwoLists(l1.next,l2);
+      }
+      return temp;
+
+
+      /**
+       * 非递归
+       */
+      // var result = new ListNode("head"),
+      //     temp;
+      // while(l1 && l2) {
+      //   if (l1.val > l2.val) {
+      //     console.log(l2.val);
+      //     l2 = l2.next;
+      //   } else {
+      //     console.log(l1.val);
+      //     l1 = l1.next;
+      //   }
+      // }
+      //
+      // if (!l1) {
+      //   console.log(l2.val);
+      // }
+      // if (!l2) {
+      //   console.log(l1.val);
+      // }
+      //
+      // return result.next;
+    };
+
+
+    function ListNode(val) {
+      this.val = val;
+      this.next = null;
+    }
+
+    var x = new ListNode(1);
+    var x1 = new ListNode(2);
+    var x2 = new ListNode(3);
+    var x3 = new ListNode(4);
+    var x4 = new ListNode(5);
+    var x5 = new ListNode(6);
+
+    x.next = x2;
+    x2.next = x4;
+
+    x1.next = x3;
+    x3.next = x5;
+
+
+    console.log(mergeTwoLists(x,x1));
+
+  function fac(num) {
+    if (num <= 1) {
+      return 1;
+    } else {
+      return num * fac(num - 1);
+    }
+  }
+  </script>
+</body>
+</html>

@@ -20,8 +20,8 @@
     //这里一定要写require()得到路径。不让图片不会被打包
     img.style.backgroundImage = 'url('+ require('../images/bg.png') +')';
   ```
-  ```html
-    <img src="images/logo.png" width="126px" alt="">
+  ```js
+    img src="images/logo.png" width="126px" alt=""
   ```
 
   webpack.config.js配置写法：（这里只给出loaders里面的配置）

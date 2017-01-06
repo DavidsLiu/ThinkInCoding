@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+  /**
+  * @param {number} x
+  * @return {boolean}
+  */
+  var isPalindrome = function(x) {
+    /**
+     * 399ms
+     */
+
+    // let str = x.toString();
+    // return str === str.split('').reverse().join('');
+
+    /**
+     * 465ms
+     */
+    // let str = x.toString();
+    // let len = str.length;
+    // if (Number.isNaN(Number.parseInt(str.charAt(0), 10))) {
+    //   return false;
+    // }
+    // for (let i = 0; i < len / 2; i++) {
+    //   if (str.charAt(i) !== str.charAt(len - i - 1)) {
+    //     return false;
+    //   }
+    // }
+    // return true;
+
+
+    /**
+     * 388ms
+     */
+
+     let str = x.toString();
+     if (str.charAt(0) === "-" || str.charAt(0) === "+") {
+       return false;
+     }
+     return str === str.split('').reverse().join('');
+  };
+
+  console.log(isPalindrome(-12321));
+  </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     *  (1)
+     *  实现一个LazyMan，可以按照以下方式调用:
+     *  LazyMan(“Hank”)输出: (无new调用)
+     *  Hi! This is Hank!
+     *
+     *  (2)
+     *  LazyMan(“Hank”).sleep(10).eat(“dinner”)输出 (任务的顺序执行)
+     *  Hi! This is Hank!
+     *  Wake up after 10
+     *  Eat dinner~
+     *
+     *  (3)
+     *  LazyMan(“Hank”).eat(“dinner”).eat(“supper”)
+     *  Hi This is Hank!
+     *  Eat dinner~
+     *  Eat supper~
+     *
+     *  (4)
+     *  LazyMan(“Hank”).sleepFirst(5).eat(“supper”)输出
+     *  Wake up after 5
+     *  Hi This is Hank!
+     *  Eat supper
+     */
+
+
+
+    /**
+     * 无new的调用
+     * 任务的执行的顺序
+     * eat()
+     * sleepFirst()
+     * sleep()
+     */
+
+
+    function _LazyMan(name) {
+      this.tasks = [];
+      var self = this;
+      var say = (function(n){
+        return function () {
+          console.log("Hi! This is " + n + '!');
+          self.next();
+        }
+      })(name);
+
+      this.tasks.push(say);
+      setTimeout(function () {
+        self.next();
+      }, 0);
+    }
+
+    _LazyMan.prototype.next = function () {
+      var fn = this.tasks.shift();
+      fn && fn();
+    }
+
+    _LazyMan.prototype.eat = function (name) {
+      var self = this;
+      var fn = (function (n) {
+        return function () {
+          console.log('Eat ' + n + "~");
+          self.next();
+        }
+      })(name);
+      self.tasks.push(fn);
+      return this;
+    }
+
+    _LazyMan.prototype.sleep = function (time) {
+      var self = this;
+      var fn = (function () {
+        return function () {
+          setTimeout(function () {
+            console.log("Wake up after " + time + "s!");
+            self.next();
+          }, time * 1000);
+        }
+      })(time);
+      self.tasks.push(fn);
+      return this;
+    }
+
+    _LazyMan.prototype.sleepFirst = function (time) {
+      var self = this;
+      var fn = (function () {
+        return function () {
+          setTimeout(function () {
+            console.log("Wake up after " + time + "s!");
+            self.next();
+          }, time * 1000);
+        }
+      })(time);
+      self.tasks.unshift(fn);
+      return this;
+    }
+
+
+    function LazyMan(name) {
+      return new _LazyMan(name);
+    }
+
+
+    // LazyMan('Hank');
+    // LazyMan('Hank').sleep(1).eat("dinner")
+    // LazyMan('Hank').eat('dinner').eat('supper')
+    LazyMan('Hank').sleepFirst(5).eat('supper')
+
+  </script>
+</body>
+</html>
