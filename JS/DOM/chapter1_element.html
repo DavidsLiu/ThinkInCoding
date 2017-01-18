@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .test {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      margin: 0 auto;
+      background-color: rgb(23,122,232);
+      border: 1px solid red;
+      padding: 50px;
+    }
+    .test2 {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      padding: 25px;
+      background-color: red;
+      box-sizing: border-box;
+      margin: 10px;
+      border: 5px solid yellow;
+      overflow: scroll;
+    }
+    .test3 {
+      position: relative;
+      width: 50px;
+      height: 300px;
+      background-color: rgb(23,23,112);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="test">
+    <div id="demo" class="test2 ok haha" x-title="some">
+
+    </div>
+    <p></p>
+    <div></div>
+    <span></span>
+  </div>
+  <script type="text/javascript">
+
+
+    /**
+     * attributes
+     * getAttribute() setAttribute()
+     * hasAttribute()
+     * hasAttributes()
+     * removeAttribute()
+     */
+    let el = document.querySelector('#demo');
+    console.log(el.attributes);
+    
+    /**
+     * classList
+     * return DOMTokenList
+     *
+     * className
+     */
+    el.classList.add('new');
+    el.classList.remove('ok');
+    console.log(el.classList.item(1));
+    //toggle  only one
+    console.log(el.classList.contains('test2'));
+    console.log(el.classList);
+
+    console.log(el.className);
+
+
+
+
+    /**
+     * clientXxxxx   元素的长度 + padding
+     *   clientHeight clientWidth
+     *   clientTop clientLeft 边框的长度   不算外边距和padding
+     *   scrollTop scrollLeft
+     *   scrollHeight scrollWidth
+     *   scrillHeight - scrollTop = clientHeight;
+     *
+     *   scollTopMax
+     *   scrollLeftMax
+     *
+     *   getBoundingClientRect()
+     *
+     *
+     *
+     */
+    console.log("----------------------------------");
+    console.log(el.clientHeight);
+    console.log(el.clientTop);
+    console.log(el.scrollHeight);
+    console.log(el.scrollTop);
+    console.log(el.getBoundingClientRect());
+
+
+
+
+    /**
+     * localName namespaceURI tagName id
+     * nextElementSibling 下一个兄弟节点
+     * previousElementSibling 前一个兄弟节点
+     *
+     */
+    console.log("-------------------------------");
+    console.log(el.localName);
+    console.log(el.namespaceURI);
+    console.log(el.tagName); // DIV
+    el.id = "newdemo";
+    console.log(el.id);
+
+
+
+
+
+      /**
+       * addEventListener()
+       * removeEventListener()
+       */
+
+
+      /**
+       * 查找元素
+       * getElementsByClassName()
+       * getElementsByTagName()
+       * querySelector()
+       * querySelectorAll()
+       */
+
+      /**
+       * 插入元素
+       *
+       * insertAdjacentElement()
+       * insertAdjacentHTML()
+       * insertAdjacentText()
+       *
+       * innerHTML outerHTML
+       */
+       console.log("-------------------------------");
+       console.log(el.innerHTML);
+       console.log(el.outerHTML); // 包括自己
+
+
+
+
+
+  </script>
+</body>
+</html>

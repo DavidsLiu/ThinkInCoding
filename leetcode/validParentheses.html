@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
+    var isValid = function(s) {
+
+      /**
+       * 3.92%
+       *
+       */
+
+      // var len = s.length,
+      //     list = [],
+      //     temp;
+      // if (len % 2 === 1) {
+      //   return false;
+      // }
+      // for (var i = 0; i < len; i++) {
+      //   temp = checked(s.charAt(i));
+      //   list.push(temp);
+      //   if (temp < 0) {
+      //     if (list.length === 1) {
+      //       return false;
+      //     }
+      //     else {
+      //       var x1 = list.pop();
+      //       var x2 = list.pop();
+      //       if (x1 + x2 !== 0) {
+      //         return false;
+      //       }
+      //     }
+      //
+      //   }
+      // }
+      // return list.length === 0 ? true : false;
+      //
+      // function checked(str) {
+      //   var result;
+      //   switch (str) {
+      //     case "(":
+      //       result = 1;
+      //       break;
+      //     case "{":
+      //       result = 2;
+      //       break;
+      //     case '[':
+      //       result = 3;
+      //       break;
+      //     case ']':
+      //       result = -3;
+      //       break;
+      //     case '}':
+      //       result = -2;
+      //       break;
+      //     case ')':
+      //       result = -1;
+      //       break;
+      //   }
+      //   return result;
+      // }
+
+
+      /**
+       * 改进
+       */
+      var len = s.length,
+          result = [];
+      if (len % 2 === 1) {
+        return false;
+      }
+      s.split('').forEach(function (item) {
+        if (item === '[' || item === '(' || item === '{') {
+          result.push(item);
+        }
+        else {
+          if (result.length === 0) {
+            return false;
+          }
+          var temp = result[result.length - 1];
+          if (item === ')' && temp !== "(") {
+            return false;
+          }
+          if (item === '}' && temp !== "{") {
+            return false;
+          }
+          if (item === ']' && temp !== "[") {
+            return false;
+          }
+          result.pop();
+        }
+      });
+
+      if (result.length > 0) {
+        return false;
+      }
+      return true;
+    };
+    /**
+     * 1、可以嵌套
+     *
+     */
+    console.log(isValid("()"));
+  </script>
+</body>
+</html>

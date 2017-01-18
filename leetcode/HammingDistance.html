@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hamming Distance</title>
+</head>
+<body>
+  <script type="text/javascript">
+  /**
+    * @param {number} x
+    * @param {number} y
+    * @return {number}
+    */
+    var hammingDistance = function(x, y) {
+      /**
+       * 3.36%
+       */
+      var xStr = x.toString(2),
+          yStr = y.toString(2),
+          dis = 0;
+
+      while (xStr || yStr) {
+        var tx = xStr.charAt(xStr.length - 1) || "0",
+            ty = yStr.charAt(yStr.length - 1) || "0";
+
+        if ( tx !== ty) {
+          dis++;
+        }
+
+        xStr = xStr.substr(0, xStr.length - 1);
+        yStr = yStr.substr(0, yStr.length - 1);
+      }
+
+      return dis;
+    };
+
+    console.log(hammingDistance(1,4));
+  </script>
+</body>
+</html>

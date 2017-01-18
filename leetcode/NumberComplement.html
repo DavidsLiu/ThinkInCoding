@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Number Complement</title>
+</head>
+<body>
+  <script type="text/javascript">
+  /**
+    * @param {number} num
+    * @return {number}
+    */
+    var findComplement = function(num) {
+      /**
+       * 6.25%
+       */
+      var str = num.toString(2),
+          result = [];
+      str.split("").forEach(function (item) {
+        if (item === '0') {
+          result.push("1");
+        }
+        else {
+          result.push("0");
+        }
+      });
+      return parseInt(result.join(''), 2);
+    };
+
+    console.log(findComplement(1));
+  </script>
+</body>
+</html>
