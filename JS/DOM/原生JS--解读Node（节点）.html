@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Node</title>
+</head>
+<body>
+
+
+
+
+
+  <script type="text/javascript">
+    /**
+     * 节点的类型
+     * Element 1
+     * Attr 2
+     * Document 3
+     * Comment 8
+     * Document 9
+     *
+     */
+
+    /**
+     * 创建节点
+     */
+
+    const el = document.createElement('div');
+
+    const attr = document.createAttribute('title');
+    attr.value = "content";
+
+    const txt = document.createTextNode('i am student');
+
+    /**
+     * nodeName
+     */
+    console.log('----------------  nodeName    --------------------');
+    console.log(el.nodeName); //DIV
+    console.log(attr.nodeName); //title
+    console.log(txt.nodeName); //#text
+    console.log(document.nodeName); //#document
+
+
+    /**
+     * nodeValue
+     */
+    console.log('----------------  nodeValue   --------------------');
+    console.log(el.nodeValue); // null
+    console.log(attr.nodeValue); // content
+    console.log(txt.nodeValue); // i am student
+    console.log(document.nodeValue); // null
+  </script>
+</body>
+</html>

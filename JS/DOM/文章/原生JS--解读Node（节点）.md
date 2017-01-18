@@ -6,11 +6,55 @@
   Node中有很多类，但是有几个你必须记住：
 
 ```js
-    | 类型          |  nodeType |
-    | -----------  |  --------  |  
-    | 元素Element   |     1     |
-    | 属性Attribute |     2     |
-    | 文本Text      |     3     |
-    | 注释Comment   |     8     |
-    | 文档Document  |     9     |
+    | 类型           |  nodeType |
+    | -----------   |  --------  |  
+    | 元素 Element   |     1     |
+    | 属性 Attr      |     2     |
+    | 文本 Text      |     3     |
+    | 注释 Comment   |     8     |
+    | 文档 Document  |     9     |
 ```
+
+###创建Node
+  创建一个元素节点
+```js
+  /**
+   * @param 元素的名称
+   */
+  const el = document.createElement('div');
+```
+  创建一个属性节点
+```js
+  /**
+   * @param 属性的名称
+   */
+   const attr = document.createAttribute('title');
+   attr.value = "content";
+```  
+  创建一个文本节点
+```js
+  /**
+   * @param 文本内容
+   */
+  const txt = document.createTextNode('i am student');
+```
+
+###nodeName属性
+  对于元素节点，返回的是元素的tagName
+```js
+  el.nodeName // DIV
+```  
+  对于属性节点，返回为属性的名称
+```js
+  attr.nodeName // title
+```  
+  对于文本节点，始终返回#text
+```js
+  txt.nodeName // #text
+```
+  对于document节点， 始终返回#document
+```
+  document.nodeName // #document
+```  
+
+###nodeValue属性
