@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+  /**
+    * Definition for singly-linked list.
+    * function ListNode(val) {
+    *     this.val = val;
+    *     this.next = null;
+    * }
+    */
+    /**
+    * @param {ListNode} head
+    * @return {ListNode}
+    */
+    var swapPairs = function(head) {
+
+      /**
+       * 13.23%
+       */
+      // var headPre = new ListNode(0);
+      // headPre.next = head;
+      // head = headPre;
+      //
+      // while(head.next !== null && head.next.next !== null) {
+      //   var x = head.next,
+      //       y = head.next.next;
+      //
+      //   head.next = y;
+      //   //交换位置
+      //   x.next = y.next;
+      //   y.next = x;
+      //
+      //   //更新状态
+      //   head = x;
+      // }
+      //
+      // return headPre.next;
+
+      /**
+       *  17.99
+       */
+      // if (head === null || head.next === null) {
+      //   return head;
+      // }
+      // var nextPair = head.next.next;
+      // var newHead = head.next;
+      // head.next.next = head;
+      // head.next = swapPairs(nextPair);
+      // return newHead;
+
+
+      /**
+       *  17.99
+       */
+      if (head === null || head.next === null) {
+        return head;
+      }
+      /**
+       * 添加一个头结点
+       */
+      var result = new ListNode('head');
+      result.next = head;
+      head = result;
+
+      while (head.next !== null && head.next.next !== null) {
+        var x = head.next;
+        var y = head.next.next;
+
+        head.next = y;
+        x.next = y.next;
+        head.next.next = x;
+
+        head = head.next.next;
+      }
+      return result.next;
+    };
+
+
+    function ListNode(val) {
+      this.val = val;
+      this.next = null;
+    }
+
+    var head = new ListNode(1);
+    head.next = new ListNode(2);
+    head.next.next = new ListNode(3);
+    head.next.next.next = new ListNode(4);
+
+    console.log(swapPairs(head));
+  </script>
+</body>
+</html>

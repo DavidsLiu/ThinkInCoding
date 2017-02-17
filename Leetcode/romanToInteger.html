@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+    * @param {string} s
+    * @return {number}
+    */
+    var romanToInt = function(s) {
+      var num = singleRoman(s.charAt(i)),
+          x,
+          y;
+      for (var i = 0, len = s.length; i < len - 1; i++) {
+        x = singleRoman(s.charAt(i));
+        y = singleRoman(s.charAt(i + 1));
+        if (x >= y) {
+          num += y;
+        }
+        else {
+          num += y - 2 * x;
+        }
+      }
+      return num;
+      function singleRoman(char) {
+        var result = 0;
+        switch (char) {
+          case "I":
+            result = 1;
+            break;
+          case "V":
+            result = 5;
+            break;
+          case "X":
+            result = 10;
+            break;
+          case "L":
+            result = 50;
+            break;
+          case "C":
+            result = 100;
+            break;
+          case "D":
+            result = 500;
+            break;
+          case "M":
+            result = 1000;
+            break;
+        }
+        return result;
+      }
+    };
+
+    /**
+     *  左边的大  x + y;
+     *  右边的大 y - x;
+     */
+    console.log(romanToInt('IX'));
+  </script>
+</body>
+</html>

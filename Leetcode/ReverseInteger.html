@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+     * Reverse digits of an integer.
+     * Example1: x = 123, return 321
+     * Example2: x = -123, return -321
+     */
+
+     /**
+      * @param {number} x
+      * @return {number}
+      */
+     var reverse = function(x) {
+        let arr = x.toString().split('');
+        let result = 0;
+        if (x > 0) {
+          result = Number(arr.reverse().join(''));
+        }
+        else {
+          arr.splice(0,1);
+          arr = arr.reverse();
+          result = -Number(arr.join(''));
+        }
+        return result > Math.pow(2, 31) - 1 || result < -Math.pow(2, 31) ? 0 : result;
+     };
+
+     console.log(reverse(1534236469));
+  </script>
+</body>
+</html>
