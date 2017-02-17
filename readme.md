@@ -2,8 +2,8 @@
 ========================
 
 > 如果你觉得我的内容不错，希望您能够右上角star一下或者fork一下。
-> 个人邮箱： 15751165579@163.com
-> 个人微信： dai_qingyun
+> * 个人邮箱： 15751165579@163.com
+> * 个人微信： dai_qingyun
 
 ###JavaScript
 * [JavaScript进阶--拉勾网鼠标移入移出效果](http://www.jianshu.com/p/fe1f3492ff9f)
