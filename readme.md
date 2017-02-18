@@ -53,6 +53,13 @@
 * [Permutation_Sequence](/Leetcode/Permutation_Sequence.js)
 * [permutation](/Leetcode/permutation.js)
 
+
+###http学习资料
+* [http2.0与http1.0的差别](https://www.zhihu.com/question/34074946)
+
+###前端学习资料
+* [滴滴前端blog](https://github.com/DDFE/DDFE-blog)
+
 ###比较好的资源推荐
 * [函数式编程英文版](https://github.com/MostlyAdequate/mostly-adequate-guide)
 * [别人整理的学习资料](https://github.com/helloqingfeng/Awsome-Front-End-learning-resource)
@@ -66,3 +73,4 @@
 * [node沙龙](http://nodejs.club/)
 * [CSS学习网站](http://cssreference.io/box-model/)
 * [免费书籍](https://speckyboy.com/free-web-design-ebooks/)
+
