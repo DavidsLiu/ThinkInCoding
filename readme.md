@@ -6,9 +6,7 @@
 > * 个人微信： dai_qingyun
 
 
-
-
- ##JavaScript（自己写的文章)
+##JavaScript（自己写的文章)
 
  * [JavaScript进阶--拉勾网鼠标移入移出效果](http://www.jianshu.com/p/fe1f3492ff9f)
  * [原生JS--解读Node（节点）](http://www.jianshu.com/p/a6f3172a42e2)
