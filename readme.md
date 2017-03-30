@@ -19,51 +19,52 @@
  * [CSS并不简单--一道微信面试题的实践](http://www.jianshu.com/p/64d5cabfab89)
  * [JS日常总结--类型检测](http://www.jianshu.com/p/33fac11bda6c)
 
- ##CSS3效果预览(pc端)
-* [照片翘边效果、鼠标悬浮效果以及倒影效果](http://15751165579.github.io/#/chapter)
-* [鼠标悬浮提示文字效果](http://15751165579.github.io/#/chapter/20170213)
-* [路径动画的两种实现方式](http://15751165579.github.io/#/chapter/20170214)
-* [clip-path 的使用](http://15751165579.github.io/#/chapter/20170215)
-* [文字阴影的处理方式](http://15751165579.github.io/#/chapter/20170216)
+##CSS3效果预览(pc端)
+
+ * [照片翘边效果、鼠标悬浮效果以及倒影效果](http://15751165579.github.io/#/chapter)
+ * [鼠标悬浮提示文字效果](http://15751165579.github.io/#/chapter/20170213)
+ * [路径动画的两种实现方式](http://15751165579.github.io/#/chapter/20170214)
+ * [clip-path 的使用](http://15751165579.github.io/#/chapter/20170215)
+ * [文字阴影的处理方式](http://15751165579.github.io/#/chapter/20170216)
 
 
 ##Canvas效果预览(pc端)
-* [canvas鼠标特效](http://15751165579.github.io/#/chapter/20170217)
+
+ * [canvas鼠标特效](http://15751165579.github.io/#/chapter/20170217)
 
 ##Webpack
-* [wepack英文文档阅读笔记--简介与模块系统](/Webpack/wepack英文文档阅读笔记--简介与模块系统.md)
-* [webpack英文文档阅读笔记--chunks](/Webpack/webpack英文文档阅读笔记--chunks.md)
-* [webpack英文文档阅读笔记--ES6环境配置](/Webpack/webpack英文文档阅读笔记--ES6环境配置.md)
-* [webpack英文文档阅读--样式表的处理](/Webpack/webpack英文文档阅读--样式表的处理.md)
-* [webpack英文文档阅读笔记--图片的处理](/Webpack/webpack英文文档阅读笔记--图片的处理.md)
+
+ * [wepack英文文档阅读笔记--简介与模块系统](/Webpack/wepack英文文档阅读笔记--简介与模块系统.md)
+ * [webpack英文文档阅读笔记--chunks](/Webpack/webpack英文文档阅读笔记--chunks.md)
+ * [webpack英文文档阅读笔记--ES6环境配置](/Webpack/webpack英文文档阅读笔记--ES6环境配置.md)
+ * [webpack英文文档阅读--样式表的处理](/Webpack/webpack英文文档阅读--样式表的处理.md)
+ * [webpack英文文档阅读笔记--图片的处理](/Webpack/webpack英文文档阅读笔记--图片的处理.md)
 
 ##Leetcode
-* [addTwoNumbers](/Leetcode/addTwoNumbers.js)
-* [atoi](/Leetcode/atoi.html)
-* [FizzBuzz](/Leetcode/FizzBuzz.html)
-* [HammingDistance](/Leetcode/HammingDistance.html)
-* [longestCommonPre](Leetcode/longestCommonPre.html)
-* [mergeTwoList](/Leetcode/mergeTwoList.html)
-* [NumberComplement](/Leetcode/NumberComplement.html)
-* [palindrome](/Leetcode/palindrome.html)
-* [ReverseInteger](/Leetcode/ReverseInteger.html)
-* [ReverseString](/Leetcode/ReverseString.html)
-* [romanToInteger](/Leetcode/romanToInteger.html)
-* [SumOfTwoIntegers](/Leetcode/SumOfTwoIntegers.html)
-* [swapNodesInPairs](/Leetcode/swapNodesInPairs.html)
-* [TwoSum](/Leetcode/TwoSum.js)
-* [validParentheses](/Leetcode/validParentheses.html)
-* [ZigZagConversion](/Leetcode/ZigZagConversion.js)
-* [Permutation_Sequence](/Leetcode/Permutation_Sequence.js)
-* [permutation](/Leetcode/permutation.js)
 
-
-##http学习资料
-* [http2.0与http1.0的差别](https://www.zhihu.com/question/34074946)
+ * [addTwoNumbers](/Leetcode/addTwoNumbers.js)
+ * [atoi](/Leetcode/atoi.html)
+ * [FizzBuzz](/Leetcode/FizzBuzz.html)
+ * [HammingDistance](/Leetcode/HammingDistance.html)
+ * [longestCommonPre](Leetcode/longestCommonPre.html)
+ * [mergeTwoList](/Leetcode/mergeTwoList.html)
+ * [NumberComplement](/Leetcode/NumberComplement.html)
+ * [palindrome](/Leetcode/palindrome.html)
+ * [ReverseInteger](/Leetcode/ReverseInteger.html)
+ * [ReverseString](/Leetcode/ReverseString.html)
+ * [romanToInteger](/Leetcode/romanToInteger.html)
+ * [SumOfTwoIntegers](/Leetcode/SumOfTwoIntegers.html)
+ * [swapNodesInPairs](/Leetcode/swapNodesInPairs.html)
+ * [TwoSum](/Leetcode/TwoSum.js)
+ * [validParentheses](/Leetcode/validParentheses.html)
+ * [ZigZagConversion](/Leetcode/ZigZagConversion.js)
+ * [Permutation_Sequence](/Leetcode/Permutation_Sequence.js)
+ * [permutation](/Leetcode/permutation.js)
 
 ##前端学习资料
-* [滴滴前端blog](https://github.com/DDFE/DDFE-blog)
-
+	
+ * [滴滴前端blog](https://github.com/DDFE/DDFE-blog)
+ * [http2.0与http1.0的差别](https://www.zhihu.com/question/34074946)
 
 ##英文文档
 * [sass文档](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
