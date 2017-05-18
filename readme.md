@@ -18,6 +18,7 @@
  * [CSS并不简单--一道微信面试题的实践](http://www.jianshu.com/p/64d5cabfab89)
  * [JS日常总结--类型检测](http://www.jianshu.com/p/33fac11bda6c)
  * [CSS并不简单--一个人性化输入框的实践](https://github.com/15751165579/ThinkInCoding/issues/3)
+ * [CSS并不简单--带你认识不一样的渐变](https://github.com/15751165579/ThinkInCoding/issues/4)
 
 ### CSS3效果预览(pc端)
 
