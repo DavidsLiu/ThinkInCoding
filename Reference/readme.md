@@ -9,7 +9,7 @@
 
 
 
-### 零散的文章
+### 文章
 
 * [神奇的猫头鹰选择器](https://alistapart.com/article/axiomatic-css-and-lobotomized-owls)
 * [David Corbacho大神谈debounce和throttle](https://css-tricks.com/debouncing-throttling-explained-examples/)
