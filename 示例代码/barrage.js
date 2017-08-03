@@ -35,6 +35,7 @@ function Barrage (id,data,options) {
     this.width = w;
     this.height = h;
     this.context = context;
+    this.canvas = canvas;
 
     const size = options.size || 14,
           x = w,
@@ -73,11 +74,22 @@ function Barrage (id,data,options) {
     }
 
     this.nextBarrage = []; //下一个显示的弹幕
+
+    this.animationLock = false; //是否在运动状态
+    this.drawSurface = null;
+
+
+    canvas.addEventListener('click', this.pause.bind(this), false);
+
+    this.animate();
 }
 
 // 动画执行
 Barrage.prototype.animate = function () {
 
+    if (this.animationLock) {
+        return;
+    }
 
     this.context.clearRect(0,0,this.width, this.height);
 
@@ -129,6 +141,22 @@ Barrage.prototype.animate = function () {
 
 
     window.requestAnimationFrame(this.animate.bind(this));
+}
+
+
+// ==============
+// 动画暂停与恢复
+// ==============
+Barrage.prototype.pause = function () {
+    const context = this.context;
+    if (!this.animationLock) {
+        this.drawSurface = context.getImageData(0,0,this.width, this.height);
+        this.animationLock = true;
+    } else {
+        context.putImageData(this.drawSurface, 0, 0);
+        this.animationLock = false;
+        this.animate();
+    }
 }
 
 
